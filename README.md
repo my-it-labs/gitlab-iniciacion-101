@@ -2,15 +2,30 @@
 
 [Siguiente página →](labs/M01-introduccion-git-gitlab/00-control-de-versiones.md)
 
-## De qué va este curso
+## Objetivo general
 
-Este curso es para ti si nunca has usado Git o lo has usado sin entender lo que pasaba. Da igual que programes, pruebes, documentes u operes sistemas: no necesitas saber programar.
+Al finalizar el curso, el alumno registra y comparte su trabajo con Git y GitLab: guarda cada cambio con su historial, lo desarrolla en una rama, lo integra mediante una merge request revisada y lo valida con un pipeline de GitLab CI/CD.
 
-Tu equipo mantiene **`manual-equipo`**, el manual interno con el que se incorpora la gente nueva: unas cuantas páginas en Markdown. Hasta ahora se editaba a mano en una carpeta compartida. Nadie sabía quién había cambiado qué, a veces se pisaban los cambios y una página rota pasaba días sin que nadie la viera.
+## Enfoque
 
-En este curso vas a llevar ese manual a Git y GitLab. Primero lo guardas con historial. Después trabajas cada cambio en su rama y lo integras con una merge request que revisa un compañero. Al final, un pipeline lo comprueba antes de fusionarlo. Como es texto y no código, cada diff y cada conflicto se lee a simple vista. Así te centras en Git y GitLab, no en un lenguaje.
+Todo el curso trabaja sobre un único proyecto, `manual-equipo`: el manual interno de un equipo, escrito en Markdown. Al ser texto y no código, cada diff y cada conflicto se leen a simple vista, y la atención queda en Git y GitLab, no en un lenguaje de programación. El recorrido va del primer commit en local a la sincronización con GitLab, a las ramas y sus conflictos, al trabajo en pareja con issues y merge requests sobre una rama protegida y al pipeline que comprueba cada push. Cada tema se cierra con el cambio publicado en GitLab, donde se puede ver y explicar qué ha ocurrido.
 
-Al terminar sabrás crear y usar repositorios locales y remotos, registrar cambios y consultar su historial, trabajar con ramas y resolver conflictos sencillos, colaborar con issues y merge requests y ejecutar un pipeline básico de GitLab CI/CD. Además, harás tú solo el recorrido completo, desde la issue hasta la fusión.
+## Dirigido a
+
+Personas que empiezan con el control de versiones o que han usado Git sin entender lo que pasaba, y que van a trabajar en proyectos alojados en GitLab: desarrollo, pruebas, documentación u operaciones.
+
+## Conocimientos previos
+
+Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una carpeta y ejecutar un comando). No hace falta saber programar ni haber usado Git. Las ramas, las merge requests y CI/CD se estudian en el curso. Se trabaja con la instancia de GitLab del curso y su runner, por lo que no hace falta crear cuentas en otros servicios.
+
+## Objetivos específicos
+
+- Explicar para qué sirve el control de versiones, qué hace Git y qué añade GitLab, y seguir un cambio por el directorio de trabajo, el área de preparación y el commit.
+- Clonar un repositorio, registrar cambios en commits, consultar su historial y sus diferencias, sincronizarlo con GitLab y excluir archivos con `.gitignore`.
+- Desarrollar un cambio aislado en una rama, fusionarlo con `merge` y resolver un conflicto sencillo.
+- Colaborar en un proyecto compartido: roles, issues, merge requests revisadas y rama principal protegida.
+- Escribir un `.gitlab-ci.yml` básico, interpretar su pipeline, leer el log de un job que falla y descargar su artefacto.
+- Completar una tarea desde la issue hasta la fusión con un historial claro.
 
 ## Temario
 

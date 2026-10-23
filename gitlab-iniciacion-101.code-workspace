@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "gitlab-iniciacion-101",
+      "path": "/home/david/Cursos/gitlab-iniciacion-101"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true
+    }
+  }
+}

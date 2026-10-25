@@ -2,7 +2,7 @@
 
 [← Página anterior](README.md) · [Siguiente página →](01-lab-identidad-y-acceso.md)
 
-El manual del equipo vive en una carpeta compartida: si alguien cambia el horario de `docs/normas-de-trabajo.md`, nadie sabe quién lo hizo, cuándo ni cuál era el texto anterior. Esta demostración convierte una copia del manual en un repositorio Git y sigue un único cambio, el horario, desde que se edita hasta que queda guardado en un commit. Al final se ve qué parte de ese recorrido es Git y qué añade GitLab.
+El manual del equipo vive en una carpeta compartida: si alguien cambia el horario de `docs/normas-de-trabajo.md`, nadie sabe quién lo hizo, cuándo ni cuál era el texto anterior. Esta demostración convierte una copia del manual en un repositorio Git y sigue un único cambio, el horario, por las tres áreas de Git: desde que se edita hasta que queda guardado en un commit. Al final se ve qué parte de ese recorrido es Git y qué añade GitLab.
 
 ## Punto de partida
 
@@ -17,11 +17,25 @@ cd ~/trabajo/manual-tres-areas
 
 - No hace falta GitLab: todo el recorrido ocurre en el equipo.
 
+## Las tres áreas
+
+Git reparte cada archivo entre tres sitios, y todo el recorrido consiste en mover un cambio de uno a otro:
+
+| Área | Qué es | Cómo entra un cambio |
+|------|--------|----------------------|
+| **Directorio de trabajo** | Los archivos tal como se ven y se editan en la carpeta | Editando con cualquier programa |
+| **Área de preparación** (*staging*) | La lista de cambios elegidos para el próximo commit | `git add` |
+| **Repositorio** | La carpeta `.git/`: el historial de commits guardados | `git commit` |
+
+```text
+directorio de trabajo ──git add──▶ área de preparación ──git commit──▶ repositorio
+```
+
 ## Recorrido
 
 ### 1. La carpeta se convierte en repositorio
 
-`git init` crea la carpeta oculta `.git/`, que es el repositorio: ahí se guardarán los commits.
+`git init` crea la carpeta oculta `.git/`, que es el **repositorio**, la tercera área: ahí se guardarán los commits.
 
 ```bash
 git init

@@ -67,12 +67,12 @@ Si no ves la sección **Protected branches**, despliégala con **Expand**. Si no
 
 **Por qué:** la issue es el registro de la tarea. Su número es lo que une la rama, los commits y la MR, y lo que permite cerrarla sola al fusionar.
 
-**Resultado esperado:** la issue aparece en **Plan → Issues** como **#1**, en estado **Open** y asignada a ti.
+**Resultado esperado:** la issue aparece en **Plan → Work items** como **#1**, en estado **Open** y asignada a ti.
 
 <details>
 <summary>Si te atascas</summary>
 
-**Plan → Issues → New issue**, rellena **Title** y **Description**, en **Assignee** elige **Assign to me** y pulsa **Create issue**.
+**Plan → Work items → New item**, rellena **Title** y **Description**, en **Assignee** pulsa **assign yourself** y pulsa **Create issue**.
 
 </details>
 
@@ -294,7 +294,7 @@ Botón **Merge** en la pestaña **Overview** de la MR. Si no aparece y ves un av
 **Por qué:** la fusión no termina en el botón. Una tarea está cerrada cuando la issue lo refleja, no quedan ramas sueltas y el proyecto de `main` tiene la página.
 
 **Resultado esperado:**
-- En **Plan → Issues**, la #1 está **Closed** y su actividad dice que la cerró la merge request !1.
+- En **Plan → Work items**, la #1 está **Closed** y su actividad dice que la cerró la merge request !1.
 - En **Code → Branches** solo queda `main`.
 - En **Code → Repository**, `docs/vacaciones.md` está en `main` y el `README.md` del proyecto muestra el enlace «Vacaciones».
 

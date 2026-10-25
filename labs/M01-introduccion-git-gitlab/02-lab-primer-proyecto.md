@@ -42,13 +42,13 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Acción** (🌐 GitLab, sesión de Ana):
 1. En **Project name**, escribe `manual-equipo`.
-2. En **Project URL**, comprueba que el espacio es `ana` y que **Project slug** es `manual-equipo`.
+2. En **Project URL**, abre el desplegable **Select a group or namespace** y elige `ana`: GitLab no lo deja elegido de antemano. Comprueba que **Project slug** es `manual-equipo`.
 3. En **Visibility Level**, elige **Private**.
 4. En **Project Configuration**, deja marcada **Initialize repository with a README**.
 
 **Por qué:** la URL del proyecto será `http://localhost:8080/ana/manual-equipo`. Privado: solo Ana y los miembros que añada lo ven; Luis, de momento, no. El README inicial deja el repositorio con un primer commit y la rama `main`, en lugar de vacío.
 
-**Resultado esperado:** el formulario sin avisos en rojo bajo **Project name** ni **Project slug**.
+**Resultado esperado:** el formulario sin avisos en rojo. Si queda el aviso «Select where to create this project.», falta elegir `ana` en **Project URL**.
 
 > 📷 **Captura pendiente** · `M01-02-03-formulario.png` — GitLab, sesión de Ana: formulario **Create blank project** relleno.
 
@@ -72,15 +72,15 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 > 📷 **Captura pendiente** · `M01-02-05-repository.png` — GitLab, sesión de Ana: **Code → Repository**.
 
-### 6 — Plan → Issues
+### 6 — Plan → Work items
 
-**Acción** (🌐 GitLab, sesión de Ana): pulsa **Plan** → **Issues**.
+**Acción** (🌐 GitLab, sesión de Ana): pulsa **Plan** → **Work items**.
 
-**Por qué:** las tareas del proyecto («falta la página de vacaciones», «el horario está desactualizado») se registran como issues. Se usan en el M04.
+**Por qué:** las tareas del proyecto («falta la página de vacaciones», «el horario está desactualizado») se registran como issues. En GitLab 19 viven en **Work items**: un work item puede ser una issue, una tarea o un incidente. Se usan en el M04.
 
-**Resultado esperado:** la lista vacía con un botón **New issue**.
+**Resultado esperado:** la lista vacía con el botón **New item**.
 
-> 📷 **Captura pendiente** · `M01-02-06-issues.png` — GitLab, sesión de Ana: **Plan → Issues** vacía.
+> 📷 **Captura pendiente** · `M01-02-06-issues.png` — GitLab, sesión de Ana: **Plan → Work items** vacía.
 
 ### 7 — Code → Merge requests
 
@@ -130,7 +130,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Por qué:** el README que genera GitLab es genérico; el del proyecto tiene que decir qué es.
 
-**Resultado esperado:** un editor con el contenido actual del README y, debajo, los campos **Commit message** y **Target branch**.
+**Resultado esperado:** un editor con el contenido actual del README, las pestañas **Write** y **Preview** y, debajo, el botón **Commit changes**.
 
 ### 12 — Escribe el README del proyecto
 
@@ -151,9 +151,10 @@ Todo lo que necesita saber una persona que se incorpora al equipo.
 ### 13 — Haz el commit desde la web
 
 **Acción** (🌐 GitLab, sesión de Ana):
-1. En **Commit message**, sustituye el texto propuesto por `Describe el manual del equipo`.
-2. Deja **Target branch** en `main`.
-3. Pulsa **Commit changes**.
+1. Pulsa **Commit changes**. Se abre un diálogo.
+2. En **Commit message**, sustituye el texto propuesto por `Describe el manual del equipo`.
+3. En **Branch**, deja **Commit to the current main branch**.
+4. Pulsa **Commit changes** en el diálogo.
 
 **Por qué:** la web no guarda archivos sueltos: cada edición es un commit, con autor y mensaje, igual que `git commit` en la terminal. El mensaje explica el porqué al que lea el historial.
 
@@ -193,7 +194,7 @@ Abre **Manage** → **Members**. Después, en una ventana privada, entra como `l
 
 **Cada sección, su función**
 Sin abrirlas, di dónde mirarías si un compañero propone un cambio en el horario, si alguien avisa de un enlace roto y si quieres saber si las páginas pasan la validación. Después compruébalo en la barra lateral.
-→ **Code** → **Merge requests**, **Plan** → **Issues** y **Build** → **Pipelines**.
+→ **Code** → **Merge requests**, **Plan** → **Work items** y **Build** → **Pipelines**.
 
 ## Reto
 
@@ -204,7 +205,7 @@ Crea en el proyecto el archivo `docs/bienvenida.md` con la línea `# Bienvenida`
 <details>
 <summary>Ver solución</summary>
 
-En **Code** → **Repository**, pulsa **+** (junto al nombre del proyecto) → **New file**. En el nombre del archivo escribe `docs/bienvenida.md` (la barra crea la carpeta `docs/`), en el contenido `# Bienvenida`, en **Commit message** `Añade la página de bienvenida`, con **Target branch** `main`, y pulsa **Commit changes**. En **Code** → **Repository** aparece la carpeta `docs/`, y en **Code** → **Commits**, tres commits.
+En **Code** → **Repository**, pulsa **+** (junto al nombre del proyecto) → **New file**. En el nombre del archivo escribe `docs/bienvenida.md` (la barra crea la carpeta `docs/`), en el contenido `# Bienvenida`, y pulsa **Commit changes**. En el diálogo, **Commit message** `Añade la página de bienvenida`, **Commit to the current main branch** y **Commit changes**. En **Code** → **Repository** aparece la carpeta `docs/`, y en **Code** → **Commits**, tres commits.
 
 </details>
 
@@ -214,6 +215,6 @@ En **Code** → **Repository**, pulsa **+** (junto al nombre del proyecto) → *
 |---------|----------------|-----------------|
 | Al crear el proyecto, aviso en rojo de que el nombre o la ruta ya están en uso | Ana ya tiene un proyecto `manual-equipo` en su espacio | Usa `manual-equipo-web` como nombre, o abre el que ya tienes |
 | La página del proyecto dice que el repositorio está vacío y no hay `README.md` | Se desmarcó **Initialize repository with a README** | Añade el archivo desde la web (**+** → **New file**, nombre `README.md`) o borra el proyecto y créalo otra vez |
-| Tras **Commit changes** se abre un formulario de merge request y `main` no cambia | Se cambió **Target branch** o se marcó la opción de empezar una merge request con los cambios | Cierra el formulario sin crearla; repite el paso 13 con **Target branch** `main` |
+| Tras **Commit changes** se abre un formulario de merge request y `main` no cambia | En el diálogo se eligió **Commit to a new branch** | Cierra el formulario sin crearla; repite el paso 13 con **Commit to the current main branch** |
 | No aparece **New project/repository** o GitLab no deja crear el proyecto | No estás con la sesión de Ana, o la cuenta no se creó bien | Comprueba el avatar; si la cuenta `ana` no existe, ejecuta `infra/bootstrap.sh` en el terminal del Codespace |
 | **Settings** no aparece en la barra lateral | Estás con la sesión de Luis, o en un proyecto que no es de Ana | Comprueba el avatar y que la ruta sea `ana/manual-equipo` |

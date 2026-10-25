@@ -73,10 +73,10 @@ f3089be Crea el manual del equipo
 | Pipeline rojo ignorado | La MR muestra el pipeline **failed** y alguien fusiona igual | Abre el job que falla y lee su log: `validar.sh` dice qué archivo y qué falta. Arregla con un commit nuevo en la misma rama |
 | MR sin `Closes #n` | La tarea está en `main` pero la issue sigue **Open** | Escribe `Closes #n` en la descripción al crear la MR, o edítala antes de fusionar |
 | Rama fusionada que no se borra | **Code → Branches** se llena de ramas ya integradas | Deja marcada **Delete source branch** y, en local, `git branch -d <rama>` tras el `git pull` |
-| Clave SSH privada fuera de su ordenador | Alguien copia `~/.ssh/id_ed25519` (la que no acaba en `.pub`) a un chat, a otro equipo o al repositorio | La privada no sale nunca del ordenador; a GitLab solo se le da la `.pub`. Si se ha expuesto, bórrala en **Edit profile → SSH Keys** y genera otra |
+| Clave SSH privada fuera de su ordenador | Alguien copia `~/.ssh/id_ed25519` (la que no acaba en `.pub`) a un chat, a otro equipo o al repositorio | La privada no sale nunca del ordenador; a GitLab solo se le da la `.pub`. Si se ha expuesto, bórrala en **Edit profile → SSH keys** y genera otra |
 | Token o contraseña en un fichero del repositorio | El secreto aparece en un commit, visible en GitLab para todos los miembros | No escribas secretos en archivos versionados. Borrarlo en un commit nuevo no basta: sigue en el historial. Revoca el token en GitLab y crea otro |
 
 > [!WARNING]
-> Un secreto que ha llegado a un commit publicado hay que darlo por comprometido. Lo que lo arregla es revocarlo en GitLab (**Edit profile → Access tokens** para un token, **Edit profile → SSH Keys** para una clave), no borrar la línea.
+> Un secreto que ha llegado a un commit publicado hay que darlo por comprometido. Lo que lo arregla es revocarlo en GitLab (**Edit profile → Access tokens** para un token, **Edit profile → SSH keys** para una clave), no borrar la línea.
 
 El laboratorio de este módulo, [Lab — Flujo completo](01-lab-flujo-completo.md), recorre una tarea entera del proyecto con `main` protegida y el pipeline activo, desde la issue hasta el `git pull` final.

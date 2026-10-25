@@ -218,7 +218,7 @@ La última línea es la que importa: `main` en GitLab ha pasado de `cb5aea3` al 
 1. En **Code** → **Repository**, abre `docs` y pulsa `herramientas.md`.
 2. Pulsa **Edit** → **Edit single file**.
 3. En la fila de GitLab, cambia `Pídelo a soporte` por `Escribe a soporte@equipo.local`.
-4. Pulsa **Commit changes**. En **Commit message** escribe `Indica el correo de soporte en GitLab`, deja que el commit vaya a la rama `main` y confirma con **Commit changes**.
+4. Pulsa **Commit changes**. En el diálogo, en **Commit message** escribe `Indica el correo de soporte en GitLab`, deja **Commit to the current main branch** y confirma con **Commit changes**.
 
 **Por qué:** simula un cambio hecho fuera del ordenador de Ana, como cuando alguien corrige el proyecto desde el navegador. Ahora GitLab tiene un commit que la copia de Ana no tiene.
 

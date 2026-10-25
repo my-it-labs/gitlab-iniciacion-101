@@ -89,7 +89,8 @@ ID_USUARIO=$(id_de "$USUARIO")
 [ -z "$MIEMBRO" ] || ID_MIEMBRO=$(id_de "$MIEMBRO")
 [ -z "$PREPARAR" ] || ID_PREPARAR=$(id_de "$PREPARAR")
 
-if api "$GITLAB_URL/api/v4/projects/$USUARIO%2F$PROYECTO" >/dev/null 2>&1; then
+# Ruta exacta: GitLab redirige el nombre de un proyecto borrado al renombrado (…-deletion_scheduled-N).
+if [ "$(api "$GITLAB_URL/api/v4/projects/$USUARIO%2F$PROYECTO" 2>/dev/null | campo path_with_namespace)" = "$USUARIO/$PROYECTO" ]; then
   echo "Ya existe $USUARIO/$PROYECTO en GitLab. Usa otro nombre, p. ej. $PROYECTO-2" >&2
   exit 1
 fi

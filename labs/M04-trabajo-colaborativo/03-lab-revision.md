@@ -35,7 +35,7 @@ scripts/partida.sh ana manual-m04-revision --miembro luis
 
 ### 2 — Luis abre la MR que se va a revisar
 
-**Acción** (🌐 GitLab, sesión de Luis): en el proyecto, **Plan → Issues → New issue**: **Title** `Las normas no dicen el horario de verano`, **Assign to me**, **Create issue**. Será la **#1**.
+**Acción** (🌐 GitLab, sesión de Luis): en el proyecto, **Plan → Work items → New item**: **Title** `Las normas no dicen el horario de verano`, en **Assignee**, **assign yourself**; **Create issue**. Será la **#1**.
 
 **Acción** (💻 Ordenador de Luis): entra con `docker exec -it pc-luis bash` y crea la rama:
 
@@ -111,7 +111,10 @@ git push -u origin 1-horario-verano
 
 ### 6 — Envía la revisión
 
-**Acción** (🌐 GitLab, sesión de Ana): pulsa **Submit review**, en la barra de la revisión pendiente al pie de la merge request, y confírmalo en el panel que se abre.
+**Acción** (🌐 GitLab, sesión de Ana):
+1. Pulsa **Your review**: se abre el panel **Submit your review**.
+2. En **Review approval**, deja **Comment**: Ana todavía no aprueba, pide cambios.
+3. Pulsa **Submit review**.
 
 **Por qué:** hasta ahora nadie veía los comentarios de Ana. Al enviarlos, Luis recibe la revisión completa de una vez.
 
@@ -211,7 +214,7 @@ To gitlab:ana/manual-m04-revision.git
 
 ### 12 — Comprueba la issue
 
-**Acción** (🌐 GitLab, sesión de Ana o de Luis): abre **Plan → Issues** y busca la #1 (pestaña **Closed**).
+**Acción** (🌐 GitLab, sesión de Ana o de Luis): abre **Plan → Work items** y busca la #1 (pestaña **Closed**).
 
 **Por qué:** gracias a `Closes #1`, nadie tiene que acordarse de cerrar la issue: se cierra cuando el cambio entra de verdad en `main`.
 
@@ -264,7 +267,7 @@ Luis puede comentar, sugerir y aprobar; la sugerencia la aplica Ana, autora de l
 
 | Síntoma | Causa probable | Cómo arreglarlo |
 |---------|----------------|-----------------|
-| Luis no ve los comentarios de Ana | Ana no ha enviado la revisión: siguen pendientes | En la sesión de Ana, **Submit review** en la barra de la revisión pendiente |
+| Luis no ve los comentarios de Ana | Ana no ha enviado la revisión: siguen pendientes | En la sesión de Ana, **Your review** → **Submit review** |
 | La MR o la revisión salen a nombre de la otra persona | Se hizo en la ventana equivocada | Mira el avatar: Ana en la ventana normal, Luis en la privada |
 | No aparece **Apply suggestion** | El comentario no tiene un bloque `suggestion`, o se escribió con otra marca | Edita el comentario: tres comillas invertidas seguidas de `suggestion` |
 | El push del paso 9 es rechazado (`! [rejected] … (fetch first)`) | Faltó el `git pull` tras aplicar la sugerencia | `git pull` y repite el push |

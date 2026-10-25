@@ -51,7 +51,7 @@ git --version
 **Resultado esperado:** una línea con la versión:
 
 ```text
-[salida pendiente: se captura al validar]
+git version 2.43.0
 ```
 
 ### 3 — Configura el nombre de Ana
@@ -172,9 +172,30 @@ Pulsa **Enter** en las tres preguntas: ubicación por defecto y sin frase de pas
 **Resultado esperado:** el aviso de que se han guardado los dos archivos y la huella de la clave:
 
 ```text
-[salida pendiente: se captura al validar]
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/ana/.ssh/id_ed25519):
+Created directory '/home/ana/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/ana/.ssh/id_ed25519
+Your public key has been saved in /home/ana/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:9hUbUyFywg1rnaPofoX5n3ffPznv5tMUsttP8ospz4w ana@pc-ana
+The key's randomart image is:
++--[ED25519 256]--+
+|         .+oo o. |
+|          .*.+   |
+|          o B    |
+|         o . B . |
+|        S .oo o .|
+|       o .o...  .|
+|        . .o  +.+|
+|       .  ..=.o@*|
+|        .. EoBo*^|
++----[SHA256]-----+
 ```
 
+La huella (`SHA256:…`) y el dibujo serán otros en tu ordenador: cada clave es distinta.
 > [!NOTE]
 > En tu trabajo real, ponle una frase de paso a la clave: si alguien copia el archivo privado, sin la frase no le sirve. Aquí se deja vacía para que los labs no la pidan en cada push.
 
@@ -206,7 +227,7 @@ Pulsa **Enter** en las tres preguntas: ubicación por defecto y sin frase de pas
 
 **Acción** (🌐 GitLab, sesión de Ana):
 1. Pulsa el avatar y elige **Edit profile**.
-2. En la barra lateral de **User settings**, pulsa **SSH Keys**.
+2. En la barra lateral de **User settings**, pulsa **SSH keys**.
 3. Pulsa **Add new key**.
 4. En **Key**, pega la línea que copiaste en el paso 10 desde `home-ana/.ssh/id_ed25519.pub`.
 5. **Title** se rellena solo con `ana@pc-ana`; déjalo así.
@@ -214,9 +235,9 @@ Pulsa **Enter** en las tres preguntas: ubicación por defecto y sin frase de pas
 
 **Por qué:** desde ahora, GitLab acepta las conexiones SSH que vengan del ordenador de Ana como si fueran Ana. Si mañana Ana cambia de ordenador, se registra la clave del nuevo y se borra la del viejo, sin tocar la contraseña.
 
-**Resultado esperado:** la página de la clave con su título `ana@pc-ana` y su huella (*fingerprint*). En **SSH Keys** aparece una fila con ese título.
+**Resultado esperado:** la página de la clave con su título `ana@pc-ana` y su huella (*fingerprint*). En **SSH keys** aparece una fila con ese título.
 
-> 📷 **Captura pendiente** · `M01-01-ssh-key-ana.png` — GitLab, sesión de Ana: **SSH Keys** con la clave `ana@pc-ana`.
+> 📷 **Captura pendiente** · `M01-01-ssh-key-ana.png` — GitLab, sesión de Ana: **SSH keys** con la clave `ana@pc-ana`.
 
 ### 13 — Comprueba que GitLab reconoce a Ana
 
@@ -234,10 +255,15 @@ La primera vez, SSH pregunta si confías en el servidor `gitlab`: escribe `yes` 
 **Resultado esperado:** la pregunta de confianza la primera vez y, al final, el saludo con el usuario de Ana:
 
 ```text
-[salida pendiente: se captura al validar]
+The authenticity of host 'gitlab (172.19.0.3)' can't be established.
+ED25519 key fingerprint is SHA256:ezLPORcx3pPH+VBig6JwVv3lPTZfh06TpFJ2Yn8HgIc.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'gitlab' (ED25519) to the list of known hosts.
+Welcome to GitLab, @ana!
 ```
 
-La última línea tiene que ser `Welcome to GitLab, @ana!`.
+La IP y la huella del servidor pueden ser otras; la última línea tiene que ser `Welcome to GitLab, @ana!`. La segunda vez ya no sale la pregunta: solo el saludo.
 
 ### 14 — Sal del ordenador de Ana
 
@@ -302,14 +328,14 @@ Pulsa **Enter** en las tres preguntas. Después, en VS Code (📝), abre `home-l
 
 **Acción** (🌐 GitLab, sesión de Luis):
 1. Abre una **ventana privada** del navegador y entra en `http://localhost:8080` con `luis` y `Formacion-2026!`.
-2. Avatar → **Edit profile** → **SSH Keys** → **Add new key**.
+2. Avatar → **Edit profile** → **SSH keys** → **Add new key**.
 3. Pega la clave en **Key**, deja **Title** en `luis@pc-luis` y pulsa **Add key**.
 
 **Por qué:** la ventana privada tiene su propia sesión, así que Ana sigue conectada en la ventana normal. Comprueba el avatar antes de pulsar **Add key**: si registras la clave de Luis en el perfil de Ana, GitLab creerá que los cambios de Luis son de Ana.
 
-**Resultado esperado:** en **SSH Keys** de Luis, una fila con el título `luis@pc-luis`.
+**Resultado esperado:** en **SSH keys** de Luis, una fila con el título `luis@pc-luis`.
 
-> 📷 **Captura pendiente** · `M01-01-ssh-key-luis.png` — GitLab, sesión de Luis (ventana privada): **SSH Keys** con la clave `luis@pc-luis`.
+> 📷 **Captura pendiente** · `M01-01-ssh-key-luis.png` — GitLab, sesión de Luis (ventana privada): **SSH keys** con la clave `luis@pc-luis`.
 
 ### 18 — Comprueba que GitLab reconoce a Luis
 
@@ -327,7 +353,12 @@ Responde `yes` a la pregunta de confianza.
 **Resultado esperado:**
 
 ```text
-[salida pendiente: se captura al validar]
+The authenticity of host 'gitlab (172.19.0.3)' can't be established.
+ED25519 key fingerprint is SHA256:ezLPORcx3pPH+VBig6JwVv3lPTZfh06TpFJ2Yn8HgIc.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'gitlab' (ED25519) to the list of known hosts.
+Welcome to GitLab, @luis!
 ```
 
 La última línea tiene que ser `Welcome to GitLab, @luis!`.
@@ -393,6 +424,6 @@ Sin hacerlo, razona: si en el paso 17 hubieras pegado la clave de Luis en el per
 | `git commit` falla con `Author identity unknown` / `*** Please tell me who you are.` | Falta `user.name` o `user.email` en ese ordenador | Repite los pasos 3 y 4 (o el 15 para Luis) en el ordenador donde estés |
 | `git init` muestra `hint: Using 'master' as the name for the initial branch.` | Falta `init.defaultBranch` | Haz el paso 5; en el repositorio ya creado, `git branch -m main` |
 | `ssh -T git@gitlab` responde `git@gitlab: Permission denied (publickey).` | La clave no está registrada en GitLab, o se pegó incompleta | Repite el paso 12 (o el 17) pegando la línea entera de `home-ana/.ssh/id_ed25519.pub` (o `home-luis/…`) |
-| `ssh -T git@gitlab` saluda al otro usuario | La clave se registró en el perfil equivocado | En el perfil que no toca, **SSH Keys** → borra la clave; regístrala en el correcto |
-| GitLab rechaza la clave con `Fingerprint sha256 has already been taken` | Esa clave ya está registrada, quizá en el otro perfil | Busca en **SSH Keys** de las dos cuentas y borra la que sobra |
+| `ssh -T git@gitlab` saluda al otro usuario | La clave se registró en el perfil equivocado | En el perfil que no toca, **SSH keys** → borra la clave; regístrala en el correcto |
+| GitLab rechaza la clave con `Fingerprint sha256 has already been taken` | Esa clave ya está registrada, quizá en el otro perfil | Busca en **SSH keys** de las dos cuentas y borra la que sobra |
 | Los commits aparecen en GitLab sin avatar ni enlace al perfil | El `user.email` de Git no coincide con el correo de la cuenta | Cambia `user.email` al correo de la cuenta; afecta a los commits nuevos |

@@ -32,6 +32,9 @@ El proyecto lo mantiene un equipo, no una persona. Ana y Luis comparten un proye
 Si la descripción de la MR incluye `Closes #<número>`, la issue se cierra sola al fusionar.
 
 > [!NOTE]
+> En GitLab 19 las issues están en **Plan → Work items**: un *work item* es cualquier elemento de trabajo, y una issue es uno de sus tipos. El botón para crearla es **New item**, el formulario se titula **New issue** y se confirma con **Create issue**.
+
+> [!NOTE]
 > Una **rama protegida** no impide trabajar: impide hacer push directo a ella. Los cambios llegan por merge request, y solo los roles permitidos pueden fusionarla.
 
 ## Páginas

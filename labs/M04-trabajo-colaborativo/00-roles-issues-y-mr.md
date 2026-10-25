@@ -24,7 +24,7 @@ Una persona recién incorporada avisa de que la bienvenida del proyecto no dice 
 
 ## Recorrido
 
-1. **La issue** (🌐 GitLab, sesión de Ana). En **Plan → Issues → New issue**, Ana registra la issue con el título «La bienvenida no dice dónde pedir el portátil» y una descripción breve: «Quien se incorpora no sabe a quién pedir el portátil antes de llegar; solo pone dónde recogerlo». En **Assignee** se asigna a sí misma. Al pulsar **Create issue**, GitLab le da el número **#1**. A partir de aquí, cualquiera que escriba `#1` en un comentario, un commit o una MR la enlaza.
+1. **La issue** (🌐 GitLab, sesión de Ana). En **Plan → Work items → New item**, Ana registra la issue con el título «La bienvenida no dice dónde pedir el portátil» y una descripción breve: «Quien se incorpora no sabe a quién pedir el portátil antes de llegar; solo pone dónde recogerlo». En **Assignee** se asigna a sí misma. Al pulsar **Create issue**, GitLab le da el número **#1**. A partir de aquí, cualquiera que escriba `#1` en un comentario, un commit o una MR la enlaza.
 
    > 📷 **Captura pendiente** · `M04-00-issue.png` — GitLab, sesión de Ana: la issue #1 recién creada.
 

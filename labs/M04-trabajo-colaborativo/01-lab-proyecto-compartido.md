@@ -53,7 +53,7 @@ Si algún ordenador aún no tenía identidad o clave, salen además líneas que 
 
 **Resultado esperado:** en **Manage → Members**, la lista muestra a `ana` (Owner) y a `luis` con el rol **Developer**.
 
-> 📷 **Captura pendiente** · `M04-01-members.png` — GitLab, sesión de Ana: **Manage → Members** con `luis` como Developer.
+![Manage → Members con luis como Developer](../img/M04-01-members.png)
 
 ### 3 — Comprueba el acceso de Luis
 
@@ -63,7 +63,7 @@ Si algún ordenador aún no tenía identidad o clave, salen además líneas que 
 
 **Resultado esperado:** Luis ve el proyecto, con `README.md`, `docs/` y `scripts/`. En la barra lateral no aparece **Settings → Repository**: con rol Developer no puede cambiar la configuración.
 
-> 📷 **Captura pendiente** · `M04-01-vista-luis.png` — GitLab, sesión de Luis: el proyecto de Ana sin **Settings** en la barra lateral.
+![El proyecto de Ana sin Settings en la barra lateral](../img/M04-01-vista-luis.png)
 
 Lo que cada uno puede hacer en este proyecto, en resumen:
 
@@ -87,7 +87,7 @@ Lo que cada uno puede hacer en este proyecto, en resumen:
 
 **Resultado esperado:** la fila de `main` muestra **Allowed to merge: Maintainers** y **Allowed to push and merge: No one**. El cambio se guarda al elegirlo en el desplegable.
 
-> 📷 **Captura pendiente** · `M04-01-protected-branches.png` — GitLab, sesión de Ana: **Protected branches** con `main` en **No one**.
+![Protected branches con main en No one](../img/M04-01-protected-branches.png)
 
 > [!WARNING]
 > La protección tarda un momento en aplicarse. Si el push del paso siguiente entra, espera un poco y repítelo con otro cambio.
@@ -157,7 +157,7 @@ branch 'flexibilidad-entrada' set up to track 'origin/flexibilidad-entrada'.
 
 **Resultado esperado:** la MR **!1** abierta, con origen `flexibilidad-entrada` y destino `main`. En la pestaña **Overview** de Ana aparece el botón **Merge**.
 
-> 📷 **Captura pendiente** · `M04-01-mr-ana.png` — GitLab, sesión de Ana: la MR !1 con el botón **Merge**.
+![La MR !1 con el botón Merge](../img/M04-01-mr-ana.png)
 
 ### 8 — Comprueba que Luis no puede fusionar
 
@@ -167,7 +167,7 @@ branch 'flexibilidad-entrada' set up to track 'origin/flexibilidad-entrada'.
 
 **Resultado esperado:** Luis ve el diff y puede comentar, pero no tiene botón **Merge**: el bloque de fusión indica que solo pueden fusionar los miembros con permiso sobre la rama de destino.
 
-> 📷 **Captura pendiente** · `M04-01-mr-luis.png` — GitLab, sesión de Luis: la misma MR sin botón **Merge**.
+![La misma MR sin botón Merge](../img/M04-01-mr-luis.png)
 
 ## Comprueba tu entendimiento
 

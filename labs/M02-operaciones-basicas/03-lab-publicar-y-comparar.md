@@ -200,7 +200,7 @@ La última línea es la que importa: `main` en GitLab ha pasado de `cb5aea3` al 
 
 **Resultado esperado:** el primero de la lista es «Añade el alta en el chat al primer día», de Ana, con el mismo identificador corto que en el ordenador de Ana. Debajo están los tres commits de partida.
 
-> 📷 **Captura pendiente** · `M02-03-commits.png` — GitLab, sesión de Ana: **Code → Commits** con «Añade el alta en el chat al primer día» arriba.
+![Code → Commits con «Añade el alta en el chat al primer día» arriba](../img/M02-03-commits.png)
 
 ### 12 — Abre su diff en GitLab
 
@@ -210,7 +210,7 @@ La última línea es la que importa: `main` en GitLab ha pasado de `cb5aea3` al 
 
 **Resultado esperado:** la página del commit muestra el autor, el identificador completo y el archivo `docs/bienvenida.md` con `1` línea añadida, resaltada en verde: «- Pide a tu persona de acogida que te dé de alta en el chat del equipo.»
 
-> 📷 **Captura pendiente** · `M02-03-diff-commit.png` — GitLab, sesión de Ana: página del commit con el diff de `docs/bienvenida.md`.
+![Página del commit con el diff de docs/bienvenida.md](../img/M02-03-diff-commit.png)
 
 ### 13 — Cambia una página desde la web
 
@@ -224,7 +224,7 @@ La última línea es la que importa: `main` en GitLab ha pasado de `cb5aea3` al 
 
 **Resultado esperado:** GitLab muestra `herramientas.md` con el texto nuevo y, en **Code** → **Commits**, «Indica el correo de soporte en GitLab» encima del de Ana.
 
-> 📷 **Captura pendiente** · `M02-03-edicion-web.png` — GitLab, sesión de Ana: `herramientas.md` tras el commit desde la web.
+![Herramientas.md tras el commit desde la web](../img/M02-03-edicion-web.png)
 
 ### 14 — Trae los cambios sin aplicarlos
 

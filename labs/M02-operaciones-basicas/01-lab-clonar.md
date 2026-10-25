@@ -48,7 +48,7 @@ Si el ordenador de Ana aún no tenía identidad de Git o clave SSH, salen ademá
 
 **Resultado esperado:** tienes en el portapapeles `git@gitlab:ana/manual-m02-clonar.git`. La página del proyecto muestra `README.md`, `docs/` y `scripts/`, y arriba el último commit, «Añade normas de trabajo y scripts de validación».
 
-> 📷 **Captura pendiente** · `M02-01-clone-ssh.png` — GitLab, sesión de Ana: desplegable **Code** con **Clone with SSH**.
+![Desplegable Code con Clone with SSH](../img/M02-01-clone-ssh.png)
 
 ### 3 — Entra en el ordenador de Ana
 

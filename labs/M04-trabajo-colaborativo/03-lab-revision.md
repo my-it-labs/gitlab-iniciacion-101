@@ -107,7 +107,7 @@ git push -u origin 1-horario-verano
 
 **Resultado esperado:** la vista previa muestra un mini-diff: en rojo la línea actual, en verde la propuesta. La revisión pendiente tiene ahora 2 comentarios.
 
-> 📷 **Captura pendiente** · `M04-03-sugerencia.png` — GitLab, sesión de Ana: el comentario con el bloque `suggestion` y su mini-diff.
+![El comentario con el bloque suggestion y su mini-diff](../img/M04-03-sugerencia.png)
 
 ### 6 — Envía la revisión
 
@@ -131,7 +131,7 @@ git push -u origin 1-horario-verano
 
 **Resultado esperado:** el hilo de la sugerencia queda resuelto y en la pestaña **Commits** aparece un segundo commit, hecho desde la web, sobre la rama `1-horario-verano`.
 
-> 📷 **Captura pendiente** · `M04-03-apply-suggestion.png` — GitLab, sesión de Luis: el hilo con **Apply suggestion**.
+![El hilo con Apply suggestion](../img/M04-03-apply-suggestion.png)
 
 ### 8 — Trae el commit de la sugerencia
 
@@ -197,7 +197,7 @@ To gitlab:ana/manual-m04-revision.git
 
 **Resultado esperado:** la MR indica que la ha aprobado Ana (`Approved by` con su avatar).
 
-> 📷 **Captura pendiente** · `M04-03-aprobada.png` — GitLab, sesión de Ana: la MR aprobada, con el botón **Merge**.
+![La MR aprobada, con el botón Merge](../img/M04-03-aprobada.png)
 
 > [!NOTE]
 > Si no ves el botón **Approve**, deja un comentario «Revisado, lo fusiono» y sigue con el paso siguiente.

@@ -26,7 +26,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Resultado esperado:** la página de inicio con la barra lateral izquierda y el avatar de Ana.
 
-> 📷 **Captura pendiente** · `M01-02-01-inicio.png` — GitLab, sesión de Ana: página de inicio con el avatar de Ana.
+![Página de inicio con el avatar de Ana](../img/M01-02-01-inicio.png)
 
 ### 2 — Empieza un proyecto nuevo
 
@@ -50,7 +50,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Resultado esperado:** el formulario sin avisos en rojo. Si queda el aviso «Select where to create this project.», falta elegir `ana` en **Project URL**.
 
-> 📷 **Captura pendiente** · `M01-02-03-formulario.png` — GitLab, sesión de Ana: formulario **Create blank project** relleno.
+![Formulario Create blank project relleno](../img/M01-02-03-formulario.png)
 
 ### 4 — Crea el proyecto
 
@@ -60,7 +60,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Resultado esperado:** la página del proyecto `manual-equipo` con un aviso de proyecto creado, la rama `main`, un commit y la lista de archivos con `README.md`. Debajo, el contenido del README renderizado.
 
-> 📷 **Captura pendiente** · `M01-02-04-proyecto-creado.png` — GitLab, sesión de Ana: página del proyecto recién creado.
+![Página del proyecto recién creado](../img/M01-02-04-proyecto-creado.png)
 
 ### 5 — Code → Repository
 
@@ -70,7 +70,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Resultado esperado:** el selector de rama con `main`, la última línea de commit (`Initial commit`, de Ana) y la tabla de archivos con `README.md`.
 
-> 📷 **Captura pendiente** · `M01-02-05-repository.png` — GitLab, sesión de Ana: **Code → Repository**.
+![Code → Repository](../img/M01-02-05-repository.png)
 
 ### 6 — Plan → Work items
 
@@ -80,7 +80,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Resultado esperado:** la lista vacía con el botón **New item**.
 
-> 📷 **Captura pendiente** · `M01-02-06-issues.png` — GitLab, sesión de Ana: **Plan → Work items** vacía.
+![Plan → Work items vacía](../img/M01-02-06-issues.png)
 
 ### 7 — Code → Merge requests
 
@@ -90,7 +90,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Resultado esperado:** la lista vacía, sin merge requests abiertas.
 
-> 📷 **Captura pendiente** · `M01-02-07-merge-requests.png` — GitLab, sesión de Ana: **Code → Merge requests** vacía.
+![Code → Merge requests vacía](../img/M01-02-07-merge-requests.png)
 
 ### 8 — Build → Pipelines
 
@@ -98,9 +98,9 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Por qué:** cuando el proyecto tenga un `.gitlab-ci.yml`, cada push lanzará un pipeline que comprueba las páginas del proyecto. Se ve en el M05.
 
-**Resultado esperado:** una página sin pipelines que invita a configurar CI/CD: el proyecto aún no tiene `.gitlab-ci.yml`.
+**Resultado esperado:** el aviso «There are currently no pipelines.» y el botón **New pipeline**: el proyecto aún no tiene `.gitlab-ci.yml`.
 
-> 📷 **Captura pendiente** · `M01-02-08-pipelines.png` — GitLab, sesión de Ana: **Build → Pipelines** sin pipelines.
+![Build → Pipelines sin pipelines](../img/M01-02-08-pipelines.png)
 
 ### 9 — Manage → Members
 
@@ -110,7 +110,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Resultado esperado:** la tabla de miembros con una sola fila: Ana (`@ana`), con el rol **Owner**.
 
-> 📷 **Captura pendiente** · `M01-02-09-members.png` — GitLab, sesión de Ana: **Manage → Members** con Ana como Owner.
+![Manage → Members con Ana como Owner](../img/M01-02-09-members.png)
 
 ### 10 — Settings
 
@@ -120,7 +120,7 @@ Con la sesión de Ana creas un proyecto en blanco con README, visitas sus seccio
 
 **Resultado esperado:** **Project visibility** en **Private**, y en **Protected branches** una fila para `main`.
 
-> 📷 **Captura pendiente** · `M01-02-10-protected-branches.png` — GitLab, sesión de Ana: **Settings → Repository → Protected branches** con `main`.
+![Settings → Repository → Protected branches con main](../img/M01-02-10-protected-branches.png)
 
 ### 11 — Abre el README para editarlo
 
@@ -146,7 +146,7 @@ Todo lo que necesita saber una persona que se incorpora al equipo.
 
 **Resultado esperado:** el editor solo con esas tres líneas. La pestaña **Preview** muestra el título grande y la frase debajo.
 
-> 📷 **Captura pendiente** · `M01-02-12-editor-readme.png` — GitLab, sesión de Ana: editor del README con **Preview**.
+![Editor del README con Preview](../img/M01-02-12-editor-readme.png)
 
 ### 13 — Haz el commit desde la web
 
@@ -156,11 +156,13 @@ Todo lo que necesita saber una persona que se incorpora al equipo.
 3. En **Branch**, deja **Commit to the current main branch**.
 4. Pulsa **Commit changes** en el diálogo.
 
+![Diálogo Commit changes con el mensaje y Commit to the current main branch](../img/M01-02-13-dialogo-commit.png)
+
 **Por qué:** la web no guarda archivos sueltos: cada edición es un commit, con autor y mensaje, igual que `git commit` en la terminal. El mensaje explica el porqué al que lea el historial.
 
 **Resultado esperado:** la página de `README.md` con el contenido nuevo y un aviso de que los cambios se han guardado. Encima del archivo, la línea del último commit: `Describe el manual del equipo`.
 
-> 📷 **Captura pendiente** · `M01-02-13-commit-web.png` — GitLab, sesión de Ana: README tras **Commit changes**.
+![README tras Commit changes](../img/M01-02-13-commit-web.png)
 
 ### 14 — Code → Commits
 
@@ -170,7 +172,7 @@ Todo lo que necesita saber una persona que se incorpora al equipo.
 
 **Resultado esperado:** dos commits en `main`, del más reciente al más antiguo: `Describe el manual del equipo` e `Initial commit`, los dos de Ana. Al pulsar el primero se ve su diff: en rojo las líneas del README genérico y en verde las tres nuevas.
 
-> 📷 **Captura pendiente** · `M01-02-14-commits.png` — GitLab, sesión de Ana: **Code → Commits** con dos commits.
+![Code → Commits con dos commits](../img/M01-02-14-commits.png)
 
 ### 15 — La dirección para clonar por SSH
 
@@ -180,7 +182,7 @@ Todo lo que necesita saber una persona que se incorpora al equipo.
 
 **Resultado esperado:** un desplegable con **Clone with SSH**: `git@gitlab:ana/manual-equipo.git`, y debajo **Clone with HTTP**.
 
-> 📷 **Captura pendiente** · `M01-02-15-clone-ssh.png` — GitLab, sesión de Ana: desplegable **Code** con **Clone with SSH**.
+![Desplegable Code con Clone with SSH](../img/M01-02-15-clone-ssh.png)
 
 ## Comprueba tu entendimiento
 

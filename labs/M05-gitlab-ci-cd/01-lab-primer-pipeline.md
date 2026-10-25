@@ -115,7 +115,7 @@ El identificador del commit será otro.
 
 **Resultado esperado:** un pipeline en la rama `main` con el commit «Añade pipeline de validación». Pasa por **Pending** o **Running** y acaba en **Passed**. Tiene un solo icono de stage.
 
-> 📷 **Captura pendiente** · `M05-01-pipeline-passed.png` — GitLab, sesión de Ana: **Build → Pipelines** con el primer pipeline en **Passed**.
+![Build → Pipelines con el primer pipeline en Passed](../img/M05-01-pipeline-passed.png)
 
 ### 7 — Abre el job
 
@@ -125,7 +125,7 @@ El identificador del commit será otro.
 
 **Resultado esperado:** la página del job con su log y, en el panel lateral, la duración, el runner que lo ejecutó y el commit.
 
-> 📷 **Captura pendiente** · `M05-01-job-log.png` — GitLab, sesión de Ana: el log del job `validar-paginas`.
+![El log del job validar-paginas](../img/M05-01-job-log.png)
 
 ### 8 — Lee el log
 

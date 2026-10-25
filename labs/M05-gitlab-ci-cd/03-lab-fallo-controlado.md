@@ -72,7 +72,7 @@ git push
 
 **Resultado esperado:** el pipeline en **Failed**. En la columna `validar`, `validar-paginas` en **Failed**; en `construir`, `construir-manual` en **Skipped**: con una página rota no se genera el proyecto.
 
-> 📷 **Captura pendiente** · `M05-03-pipeline-failed.png` — GitLab, sesión de Ana: el pipeline en **Failed** con `construir-manual` en **Skipped**.
+![El pipeline en Failed con construir-manual en Skipped](../img/M05-03-pipeline-failed.png)
 
 ### 4 — Lee el log del job fallido
 

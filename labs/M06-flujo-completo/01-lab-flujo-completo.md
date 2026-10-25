@@ -270,7 +270,7 @@ git push
 
 </details>
 
-> 📷 **Captura pendiente** · `M06-01-mr-pipeline-verde.png` — GitLab, sesión de Ana: la MR con el pipeline en **Passed**.
+![La MR con el pipeline en Passed](../img/M06-01-mr-pipeline-verde.png)
 
 ### 10 — Fusiona la merge request
 
@@ -305,7 +305,7 @@ Si la issue sigue **Open**, la descripción de la MR no llevaba `Closes #1` (o t
 
 </details>
 
-> 📷 **Captura pendiente** · `M06-01-issue-cerrada.png` — GitLab, sesión de Ana: la issue #1 cerrada por la MR !1.
+![La issue #1 cerrada por la MR !1](../img/M06-01-issue-cerrada.png)
 
 ### 12 — Pon al día el ordenador de Ana
 

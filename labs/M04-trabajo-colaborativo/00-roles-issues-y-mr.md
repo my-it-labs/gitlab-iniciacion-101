@@ -26,7 +26,7 @@ Una persona recién incorporada avisa de que la bienvenida del proyecto no dice 
 
 1. **La issue** (🌐 GitLab, sesión de Ana). En **Plan → Work items → New item**, Ana registra la issue con el título «La bienvenida no dice dónde pedir el portátil» y una descripción breve: «Quien se incorpora no sabe a quién pedir el portátil antes de llegar; solo pone dónde recogerlo». En **Assignee** se asigna a sí misma. Al pulsar **Create issue**, GitLab le da el número **#1**. A partir de aquí, cualquiera que escriba `#1` en un comentario, un commit o una MR la enlaza.
 
-   > 📷 **Captura pendiente** · `M04-00-issue.png` — GitLab, sesión de Ana: la issue #1 recién creada.
+   ![La issue #1 recién creada](../img/M04-00-issue.png)
 
 2. **La rama, con el número de la issue** (💻 Ordenador de Ana). Desde la propia issue, el botón **Create merge request** (o su desplegable, con la opción **Create branch**) crea una rama cuyo nombre empieza por `1-` y una MR en borrador ligada a la issue. En esta demostración la rama se crea en el ordenador de Ana, con el mismo convenio de nombre:
 
@@ -72,7 +72,7 @@ Closes #1
 
    En **Reviewer** aparece `luis`. Al pulsar **Create merge request**, la MR queda como **!1** (las MR usan `!` y las issues `#`). En la issue #1 aparece ahora la MR relacionada: issue, rama y MR quedan enlazadas.
 
-   > 📷 **Captura pendiente** · `M04-00-mr.png` — GitLab, sesión de Ana: la MR !1 con `Closes #1` y `luis` como revisor.
+   ![La MR !1 con Closes #1 y luis como revisor](../img/M04-00-mr.png)
 
 6. **La revisión con sugerencia** (🌐 GitLab, sesión de Luis, en la ventana privada). Luis abre la MR, entra en la pestaña **Changes** y ve el diff de `docs/bienvenida.md`. Le parece bien, pero prefiere que el correo esté en la tabla «A quién preguntar» y que la línea sea más corta. Pasa el ratón por la línea nueva, pulsa el icono de comentario y escribe una **sugerencia de cambio**: un bloque `suggestion` con el texto que propone para esa línea.
 
@@ -86,7 +86,7 @@ Más corto, y el correo ya está en «A quién preguntar»:
 
    En la MR, la sugerencia no se ve como texto suelto, sino como un mini-diff con la línea actual y la propuesta.
 
-   > 📷 **Captura pendiente** · `M04-00-sugerencia.png` — GitLab, sesión de Luis: la sugerencia en la pestaña **Changes**.
+   ![La sugerencia en la pestaña Changes](../img/M04-00-sugerencia.png)
 
 7. **Aplicar la sugerencia** (🌐 GitLab, sesión de Ana). Ana, autora de la MR, ve el comentario con el botón **Apply suggestion**. Al aplicarla, GitLab crea un commit nuevo en la rama `1-bienvenida-portatil` con el cambio propuesto, sin que ella tenga que editar el fichero ni hacer push. El hilo del comentario queda resuelto.
 

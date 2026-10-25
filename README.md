@@ -8,7 +8,7 @@ Al finalizar el curso, el alumno registra y comparte su trabajo con Git y GitLab
 
 ## Enfoque
 
-Todo el curso trabaja sobre un único proyecto, `manual-equipo`: el manual interno de un equipo, escrito en Markdown. Al ser texto y no código, cada diff y cada conflicto se leen a simple vista, y la atención queda en Git y GitLab, no en un lenguaje de programación. El recorrido va del primer commit en local a la sincronización con GitLab, a las ramas y sus conflictos, al trabajo en pareja con issues y merge requests sobre una rama protegida y al pipeline que comprueba cada push. Cada tema se cierra con el cambio publicado en GitLab, donde se puede ver y explicar qué ha ocurrido.
+Todo el curso trabaja sobre un único proyecto, `manual-equipo`: la documentación interna de un equipo, su manual, con páginas en Markdown sobre la bienvenida a quien se incorpora, las herramientas y las normas de trabajo, y dos scripts que comprueban que las páginas están bien. En las prácticas se le llama simplemente **el proyecto**. Al ser texto y no código, cada diff y cada conflicto se leen a simple vista, y la atención queda en Git y GitLab, no en un lenguaje de programación. El recorrido va del primer commit en local a la sincronización con GitLab, a las ramas y sus conflictos, al trabajo entre dos personas del equipo, Ana y Luis, con issues y merge requests sobre una rama protegida y al pipeline que comprueba cada push. Cada tema se cierra con el cambio publicado en GitLab, donde se puede ver y explicar qué ha ocurrido.
 
 ## Dirigido a
 
@@ -16,7 +16,7 @@ Personas que empiezan con el control de versiones o que han usado Git sin entend
 
 ## Conocimientos previos
 
-Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una carpeta y ejecutar un comando). No hace falta saber programar ni haber usado Git. Las ramas, las merge requests y CI/CD se estudian en el curso. Se trabaja con la instancia de GitLab del curso y su runner, por lo que no hace falta crear cuentas en otros servicios.
+Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una carpeta y ejecutar un comando). No hace falta saber programar ni haber usado Git. Las ramas, las merge requests y CI/CD se estudian en el curso. Todo el entorno (GitLab, su runner y los ordenadores del equipo) se levanta en tu Codespace, por lo que no hace falta instalar nada ni crear cuentas en otros servicios.
 
 ## Objetivos específicos
 
@@ -74,16 +74,18 @@ Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una 
 
 ## Antes de empezar
 
-| Requisito | Dónde |
-|-----------|-------|
-| Navegador, Git y Visual Studio Code (en Windows, con Git Bash) | Se comprueba en el M01 |
-| Cuenta en la instancia de GitLab del curso, con permiso para crear proyectos | Te la da el formador |
-| Token de acceso personal de GitLab | Se crea en el M01 |
-| Runner disponible para CI/CD | Lo aporta la instancia del curso; se usa en el M05 |
+Las prácticas se hacen en un equipo simulado dentro de tu Codespace: un GitLab con su runner y un ordenador (un contenedor Ubuntu) para cada miembro del equipo, Ana y Luis. Haces de los dos: editas los archivos de cada uno con VS Code, usas Git en su ordenador y entras en GitLab con su sesión. Cada paso dice dónde se hace:
 
-Cada laboratorio empieza desde cero con su propio proyecto. `scripts/partida.sh` lo crea en GitLab con el manual del equipo y lo clona en `~/trabajo/`. Cada página indica el comando exacto.
+| Marca | Dónde estás |
+|-------|-------------|
+| 🖥️ Terminal del Codespace | Tu terminal: levantar el entorno, preparar una página y entrar en un ordenador |
+| 💻 Ordenador de Ana · 💻 Ordenador de Luis | La terminal de su ordenador, solo para Git; el prompt lo confirma: `ana@pc-ana:~$` |
+| 📝 VS Code, ordenador de Ana · de Luis | Sus archivos, en las carpetas `home-ana/` y `home-luis/` del explorador de VS Code |
+| 🌐 GitLab, sesión de Ana · sesión de Luis | El navegador, con la cuenta de esa persona |
 
-¿Quieres repasar por tu cuenta, sin la instancia del curso? [infra/README.md](infra/README.md) explica cómo levantar un GitLab propio con su runner.
+Cómo se levanta y cómo se entra en cada sitio: **[El entorno de prácticas](infra/README.md)**.
+
+Cada laboratorio empieza desde cero con su propia copia del proyecto: `scripts/partida.sh` la crea en GitLab y la clona en el ordenador de quien lo va a usar. Cada página indica el comando exacto.
 
 ## Empieza aquí
 

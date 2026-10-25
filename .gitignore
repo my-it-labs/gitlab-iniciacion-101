@@ -14,3 +14,7 @@ curso.meta.json
 
 # Entorno local
 infra/.env
+
+# Carpetas personales de los ordenadores del equipo (infra/compose.yaml)
+home-ana/
+home-luis/

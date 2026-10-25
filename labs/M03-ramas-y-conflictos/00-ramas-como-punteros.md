@@ -2,13 +2,20 @@
 
 [← Página anterior](README.md) · [Siguiente página →](01-lab-rama-y-merge.md)
 
-El equipo quiere una página de preguntas frecuentes en el manual. Mientras se escribe, `main` debe seguir mostrando el manual tal como está. En esta demostración, Ana escribe la página en una rama, `nueva-pagina-faq`, con dos commits, y la fusiona después. El grafo de Git y el de GitLab enseñan qué es realmente una rama: un nombre que apunta a un commit y que avanza con cada commit nuevo.
+El equipo quiere una página de preguntas frecuentes en el proyecto. Mientras se escribe, `main` debe seguir mostrando el proyecto tal como está. En esta demostración, Ana escribe la página en una rama, `nueva-pagina-faq`, con dos commits, y la fusiona después. El grafo de Git y el de GitLab enseñan qué es realmente una rama: un nombre que apunta a un commit y que avanza con cada commit nuevo.
 
 ## Punto de partida
 
-- URL: `https://gitlab.ejemplo.com` (marcador de la instancia del curso). Usuario `ana`.
-- Proyecto: creado desde la carpeta del repositorio del curso con `scripts/partida.sh manual-m03-demo`. Contiene el manual del equipo con tres commits en `main` («Crea el manual del equipo», «Añade bienvenida y herramientas», «Añade normas de trabajo y scripts de validación»).
-- Copia local en `~/trabajo/manual-m03-demo`, con las credenciales ya guardadas por el script.
+- El entorno de prácticas levantado ([El entorno de prácticas](../../infra/README.md)).
+- Proyecto `ana/manual-m03-demo`, creado y clonado en el ordenador de Ana con:
+
+  ```bash
+  # 🖥️ Terminal del Codespace
+  scripts/partida.sh ana manual-m03-demo
+  ```
+
+  Tiene tres commits en `main` («Crea el manual del equipo», «Añade bienvenida y herramientas», «Añade normas de trabajo y scripts de validación»).
+- Todo lo que sigue en la terminal ocurre en el ordenador de Ana (`docker exec -it pc-ana bash`), en `~/trabajo/manual-m03-demo`. El script deja allí su identidad de Git y su clave SSH.
 
 ## Recorrido
 
@@ -27,6 +34,7 @@ Hay una sola línea de historia. `main` apunta al último commit, `HEAD -> main`
 ### 2. Se crea la rama
 
 ```bash
+# 💻 Ordenador de Ana
 git switch -c nueva-pagina-faq
 ```
 
@@ -44,7 +52,7 @@ No se ha copiado ningún archivo ni ha aparecido ningún commit. Solo hay un nom
 
 ### 3. Dos commits en la rama
 
-Ana crea `docs/preguntas-frecuentes.md` y la confirma («Añade la página de preguntas frecuentes»). Después añade al índice del `README.md` la línea `- [Preguntas frecuentes](docs/preguntas-frecuentes.md)` y la confirma («Enlaza las preguntas frecuentes desde el índice»). El grafo queda así:
+En VS Code, Ana crea `home-ana/trabajo/manual-m03-demo/docs/preguntas-frecuentes.md` y la confirma («Añade la página de preguntas frecuentes»). Después añade al índice de su `README.md` la línea `- [Preguntas frecuentes](docs/preguntas-frecuentes.md)` y la confirma («Enlaza las preguntas frecuentes desde el índice»). El grafo queda así:
 
 ```text
 * 8ebdb6f (HEAD -> nueva-pagina-faq) Enlaza las preguntas frecuentes desde el índice
@@ -63,20 +71,23 @@ Para que el equipo la vea, Ana publica la rama con `git push -u origin nueva-pag
 ```text
 remote:
 remote: To create a merge request for nueva-pagina-faq, visit:
-remote:   https://gitlab.ejemplo.com/ana/manual-m03-demo/-/merge_requests/new?merge_request%5Bsource_branch%5D=nueva-pagina-faq
+remote:   http://localhost:8080/ana/manual-m03-demo/-/merge_requests/new?merge_request%5Bsource_branch%5D=nueva-pagina-faq
 remote:
-To https://gitlab.ejemplo.com/ana/manual-m03-demo.git
+To gitlab:ana/manual-m03-demo.git
  * [new branch]      nueva-pagina-faq -> nueva-pagina-faq
 branch 'nueva-pagina-faq' set up to track 'origin/nueva-pagina-faq'.
 ```
 
-En el proyecto, **Code → Branches** lista dos ramas: `main`, con las etiquetas **default** y **protected**, y `nueva-pagina-faq`, con su último commit «Enlaza las preguntas frecuentes desde el índice». **Code → Repository graph** dibuja el mismo grafo que la terminal: tres commits comunes y, encima, los dos de la rama, cada nombre de rama junto al commit al que apunta.
+En GitLab, con la sesión de Ana, **Code → Branches** del proyecto lista dos ramas: `main`, con las etiquetas **default** y **protected**, y `nueva-pagina-faq`, con su último commit «Enlaza las preguntas frecuentes desde el índice». **Code → Repository graph** dibuja el mismo grafo que la terminal: tres commits comunes y, encima, los dos de la rama, cada nombre de rama junto al commit al que apunta.
+
+> 📷 **Captura pendiente** · `M03-00-repository-graph.png` — GitLab, sesión de Ana: **Code → Repository graph** con la rama `nueva-pagina-faq`.
 
 ### 5. Fusión *fast-forward*
 
 De vuelta en `main`, Ana fusiona la rama:
 
 ```bash
+# 💻 Ordenador de Ana
 git switch main
 git merge nueva-pagina-faq
 ```
@@ -103,6 +114,7 @@ Como `main` no había cambiado desde que se creó la rama, Git no necesita mezcl
 ### 6. Limpieza y publicación
 
 ```bash
+# 💻 Ordenador de Ana
 git branch -d nueva-pagina-faq
 git push
 git push origin --delete nueva-pagina-faq

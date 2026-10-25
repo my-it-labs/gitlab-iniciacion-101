@@ -1,5 +1,6 @@
-# GitLab CE + runner Docker para formación (receta del template).
+# GitLab CE + runner Docker + los ordenadores del equipo, todos en la red gitlab-curso.
 # Navegador: http://localhost:$GITLAB_PORT (8080) · dentro de la red: http://gitlab:$GITLAB_PORT
+# Git por SSH desde los ordenadores: git@gitlab:<usuario>/<proyecto>.git
 name: gitlab-curso
 
 services:
@@ -14,6 +15,8 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://localhost:${GITLAB_PORT:-8080}'
         nginx['listen_port'] = ${GITLAB_PORT:-8080}
+        puma['port'] = 8081
+        gitlab_rails['gitlab_ssh_host'] = 'gitlab'
         puma['worker_processes'] = 0
         sidekiq['concurrency'] = 5
         prometheus_monitoring['enable'] = false
@@ -33,6 +36,30 @@ services:
     volumes:
       - runner-config:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
+    networks: [curso]
+
+  # Ordenadores del equipo: se entra con `docker exec -it pc-ana bash`. Su carpeta personal es
+  # home-<usuario>/ en el workspace, así que lo que Ana edita en VS Code está en su ordenador.
+  pc-ana:
+    build: {context: pc, args: {USUARIO: ana}}
+    image: gitlab-curso-pc:ana
+    container_name: pc-ana
+    hostname: pc-ana
+    init: true
+    restart: unless-stopped
+    volumes:
+      - ../home-ana:/home/ana
+    networks: [curso]
+
+  pc-luis:
+    build: {context: pc, args: {USUARIO: luis}}
+    image: gitlab-curso-pc:luis
+    container_name: pc-luis
+    hostname: pc-luis
+    init: true
+    restart: unless-stopped
+    volumes:
+      - ../home-luis:/home/luis
     networks: [curso]
 
 networks:

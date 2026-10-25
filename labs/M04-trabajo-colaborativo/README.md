@@ -2,13 +2,13 @@
 
 [← Página anterior](../M03-ramas-y-conflictos/03-buenas-practicas.md) · [Siguiente página →](00-roles-issues-y-mr.md)
 
-El manual lo mantiene un equipo, no una persona. En parejas compartís un proyecto. Cada cambio nace en una issue, se propone en una merge request y lo revisa el compañero antes de entrar en una rama principal que nadie puede tocar directamente.
+El proyecto lo mantiene un equipo, no una persona. Ana y Luis comparten un proyecto: cada cambio nace en una issue, se propone en una merge request y lo revisa la otra persona antes de entrar en una rama principal que nadie puede tocar directamente. Haces de los dos, con el ordenador de cada uno y una sesión de GitLab para cada uno (Ana en una ventana normal, Luis en una privada): [El entorno de prácticas](../../infra/README.md).
 
 ## Qué aprenderás
 
-- Dar acceso a `manual-equipo` a un compañero con el rol justo
+- Dar acceso a `manual-equipo` a otra persona del equipo con el rol justo
 - Impedir que nadie suba cambios directamente a la rama principal
-- Registrar como issue una mejora o un error del manual
+- Registrar como issue una mejora o un error del proyecto
 - Llevar un cambio de la issue a la merge request, enlazados entre sí
 - Revisar la merge request de otra persona, comentar y sugerir cambios
 - Completar la fusión y cerrar la issue con ella
@@ -40,9 +40,9 @@ Si la descripción de la MR incluye `Closes #<número>`, la issue se cierra sola
 | # | Página | Qué hay |
 |---|--------|---------|
 | 00 | [Roles, issues y merge requests](00-roles-issues-y-mr.md) | Demostración: de la issue a la MR fusionada, con una sugerencia de cambio |
-| 01 | [Lab — Proyecto compartido](01-lab-proyecto-compartido.md) | Invitas a tu pareja con su rol y proteges la rama principal |
-| 02 | [Lab — De la issue a la merge request](02-lab-de-issue-a-mr.md) | Registras una issue, haces el cambio en una rama y abres la MR enlazada |
-| 03 | [Lab — Revisión](03-lab-revision.md) | Revisas la MR de tu pareja, pides un cambio y completas la fusión |
+| 01 | [Lab — Proyecto compartido](01-lab-proyecto-compartido.md) | Como Ana, invitas a Luis con su rol y proteges la rama principal |
+| 02 | [Lab — De la issue a la merge request](02-lab-de-issue-a-mr.md) | Como Luis, registras una issue, haces el cambio en una rama y abres la MR enlazada |
+| 03 | [Lab — Revisión](03-lab-revision.md) | Como Ana, revisas la MR de Luis, pides un cambio y completas la fusión |
 
 → Empieza por **[00 — Roles, issues y merge requests](00-roles-issues-y-mr.md)**.
 <!-- /gen:paginas -->

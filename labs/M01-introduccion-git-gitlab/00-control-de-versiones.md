@@ -2,20 +2,34 @@
 
 [← Página anterior](README.md) · [Siguiente página →](01-lab-identidad-y-acceso.md)
 
-El manual del equipo vive en una carpeta compartida: si alguien cambia el horario de `docs/normas-de-trabajo.md`, nadie sabe quién lo hizo, cuándo ni cuál era el texto anterior. Esta demostración convierte una copia del manual en un repositorio Git y sigue un único cambio, el horario, por las tres áreas de Git: desde que se edita hasta que queda guardado en un commit. Al final se ve qué parte de ese recorrido es Git y qué añade GitLab.
+El proyecto vive en una carpeta compartida: si alguien cambia el horario de `docs/normas-de-trabajo.md`, nadie sabe quién lo hizo, cuándo ni cuál era el texto anterior. Esta demostración ocurre entera en el ordenador de Ana: convierte su copia del proyecto en un repositorio Git y sigue un único cambio, el horario, por las tres áreas de Git: desde que se edita hasta que queda guardado en un commit. Al final se ve qué parte de ese recorrido es Git y qué añade GitLab.
 
 ## Punto de partida
 
-- Terminal (Git Bash en Windows) con Git instalado y la identidad configurada como `Ana` / `ana@equipo.local`.
-- Una copia del manual tomada del repositorio del curso, sin Git todavía:
+- El entorno de prácticas levantado ([El entorno de prácticas](../../infra/README.md)). Todo se hace en el ordenador de Ana:
 
 ```bash
-mkdir -p ~/trabajo
-cp -r proyecto/manual-equipo ~/trabajo/manual-tres-areas
+# 🖥️ Terminal del Codespace
+docker exec -it pc-ana bash
+```
+
+- Git con la identidad de Ana. Si su ordenador aún no la tiene (se configura en el [lab de identidad y acceso](01-lab-identidad-y-acceso.md)):
+
+```bash
+# 💻 Ordenador de Ana
+git config --global user.name "Ana"
+git config --global user.email "ana@equipo.local"
+git config --global init.defaultBranch main
+```
+
+- Una copia del proyecto, sin Git todavía, en el ordenador de Ana (📝 VS Code): en el explorador, la carpeta `proyecto/manual-equipo` del repositorio del curso se copia dentro de `home-ana/trabajo/` (se crea `trabajo` si no existe) y la copia se renombra a `manual-tres-areas`. Desde ese momento está en el ordenador de Ana, en `~/trabajo/manual-tres-areas`:
+
+```bash
+# 💻 Ordenador de Ana
 cd ~/trabajo/manual-tres-areas
 ```
 
-- No hace falta GitLab: todo el recorrido ocurre en el equipo.
+- No hace falta GitLab: todo el recorrido ocurre en el ordenador de Ana.
 
 ## Las tres áreas
 
@@ -38,6 +52,7 @@ directorio de trabajo ──git add──▶ área de preparación ──git com
 `git init` crea la carpeta oculta `.git/`, que es el **repositorio**, la tercera área: ahí se guardarán los commits.
 
 ```bash
+# 💻 Ordenador de Ana
 git init
 ```
 
@@ -45,7 +60,7 @@ git init
 Initialized empty Git repository in /home/ana/trabajo/manual-tres-areas/.git/
 ```
 
-`git status` describe en qué área está cada archivo. Recién creado el repositorio, todo el manual está en el **directorio de trabajo** y Git todavía no lo sigue (*untracked*):
+`git status` describe en qué área está cada archivo. Recién creado el repositorio, todo el proyecto está en el **directorio de trabajo** y Git todavía no lo sigue (*untracked*):
 
 ```text
 On branch main
@@ -62,11 +77,12 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-### 2. Primera foto del manual
+### 2. Primera foto del proyecto
 
-Con `git add .` todo el manual pasa al área de preparación, y `git commit` guarda la primera foto:
+Con `git add .` todo el proyecto pasa al área de preparación, y `git commit` guarda la primera foto:
 
 ```bash
+# 💻 Ordenador de Ana
 git add .
 git commit -m "Crea el manual del equipo"
 ```
@@ -83,11 +99,11 @@ git commit -m "Crea el manual del equipo"
  create mode 100755 scripts/validar.sh
 ```
 
-`8e56976` es el identificador abreviado del commit. Ese estado del manual ya se puede recuperar siempre.
+`8e56976` es el identificador abreviado del commit. Ese estado del proyecto ya se puede recuperar siempre.
 
 ### 3. Un cambio en el directorio de trabajo
 
-En `docs/normas-de-trabajo.md`, la línea del horario pasa de 9:00 a 17:00 a 8:30 a 16:30. El archivo se edita en VS Code como cualquier otro; Git no interviene. `git status` lo detecta como modificado y **no preparado** (*not staged*):
+En `docs/normas-de-trabajo.md`, la línea del horario pasa de 9:00 a 17:00 a 8:30 a 16:30. Ana abre en VS Code `home-ana/trabajo/manual-tres-areas/docs/normas-de-trabajo.md`, cambia la línea y guarda; Git no interviene. `git status` lo detecta como modificado y **no preparado** (*not staged*):
 
 ```text
 On branch main
@@ -122,6 +138,7 @@ index db74ebd..8a08d1c 100644
 `git add` elige qué irá en el próximo commit. Aquí solo hay un archivo, pero con varios cambios a medias se podría preparar uno y dejar el resto para después.
 
 ```bash
+# 💻 Ordenador de Ana
 git add docs/normas-de-trabajo.md
 ```
 
@@ -138,6 +155,7 @@ El mensaje ha cambiado de *Changes not staged* a *Changes to be committed*: el a
 ### 5. El commit guarda la foto en el repositorio
 
 ```bash
+# 💻 Ordenador de Ana
 git commit -m "Adelanta el horario de referencia"
 ```
 
@@ -170,13 +188,13 @@ Date:   Sun Oct 25 10:02:17 2026 +0100
 
 ### 6. Dónde entra GitLab
 
-Todo lo anterior ha ocurrido sin red: es Git, en el equipo de Ana. El repositorio solo existe en `~/trabajo/manual-tres-areas/.git/` y nadie más del equipo ve el cambio de horario. GitLab entra cuando ese repositorio se sube a un servidor común:
+Todo lo anterior ha ocurrido sin red: es Git, en el ordenador de Ana. El repositorio solo existe en `~/trabajo/manual-tres-areas/.git/` de `pc-ana`, y Luis, desde su ordenador, no ve el cambio de horario. GitLab entra cuando ese repositorio se sube a un servidor común:
 
 | Lo que se ha visto aquí (Git, local) | Lo que añade GitLab (servidor) |
 |---------------------------------------|--------------------------------|
 | `git init`, `git add`, `git commit`, `git log` | Una copia remota del repositorio que comparte el equipo |
 | Historial con autor, fecha y mensaje | El mismo historial, navegable en la web (**Code** → **Commits**) |
-| Un único usuario en su disco | Miembros con roles y permisos (**Manage** → **Members**) |
+| Una sola persona en su ordenador | Miembros con roles y permisos (**Manage** → **Members**) |
 | — | Issues, merge requests y pipelines que validan cada cambio |
 
 ## Qué queda visto

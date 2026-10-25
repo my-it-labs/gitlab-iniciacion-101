@@ -2,7 +2,7 @@
 
 [← Página anterior](02-lab-artefacto.md) · [Siguiente página →](../M06-flujo-completo/README.md)
 
-Un pipeline sirve sobre todo el día que falla: frena el cambio antes de que llegue al manual. En este lab rompes a propósito una página de `manual-equipo`, ves cómo el pipeline se pone en rojo, encuentras en el log la línea que explica el fallo, lo reproduces en tu equipo y lo corriges.
+Un pipeline sirve sobre todo el día que falla: frena el cambio antes de que llegue al proyecto. En este lab rompes a propósito una página de `manual-equipo`, ves cómo el pipeline se pone en rojo, encuentras en el log la línea que explica el fallo, lo reproduces en el ordenador de Ana y lo corriges.
 
 ### Objetivo
 
@@ -10,16 +10,16 @@ Diagnosticar por el log un job fallido, reproducir el error en local y dejar el 
 
 ### Punto de partida
 
-- URL: `https://gitlab.ejemplo.com` (la real te la da el formador). Usuario `ana` en los ejemplos: usa el tuyo.
-- Credenciales: tu token de acceso personal (scopes `api` y `write_repository`).
-- Estado: desde la carpeta del repositorio del curso, ejecuta:
+- El entorno de prácticas levantado ([El entorno de prácticas](../../infra/README.md)): GitLab en `http://localhost:8080` y su runner.
+- Estado: en el terminal del Codespace, ejecuta:
 
   ```bash
-  scripts/partida.sh manual-m05-fallo --con-ci
+  # 🖥️ Terminal del Codespace
+  scripts/partida.sh ana manual-m05-fallo --con-ci
+  docker exec -it pc-ana bash
   ```
 
-  Crea `ana/manual-m05-fallo` con el manual y el `.gitlab-ci.yml` (jobs `validar-paginas` y `construir-manual`), y lo clona en `~/trabajo/manual-m05-fallo`. El push inicial lanza un pipeline que debe acabar en **Passed**: compruébalo en **Build → Pipelines** antes de empezar.
-- Un runner compartido disponible en la instancia (lo aporta el curso).
+  Crea `ana/manual-m05-fallo` con el contenido del proyecto y el `.gitlab-ci.yml` (jobs `validar-paginas` y `construir-manual`), y lo clona en `~/trabajo/manual-m05-fallo` del ordenador de Ana. El push inicial lanza un pipeline que debe acabar en **Passed**: compruébalo en **Build → Pipelines** antes de empezar. El segundo comando te sienta en el ordenador de Ana.
 
 ### En qué consiste
 
@@ -27,13 +27,14 @@ Quitas el título de `docs/herramientas.md`, publicas, lees el fallo en GitLab, 
 
 ### 1 — Quita el título de la página de herramientas
 
-**Acción:**
+**Acción** (💻 Ordenador de Ana):
 
 ```bash
+# 💻 Ordenador de Ana
 cd ~/trabajo/manual-m05-fallo
 ```
 
-Abre `docs/herramientas.md` en VS Code y borra la primera línea, `# Herramientas`. Guarda.
+**Acción** (📝 VS Code, ordenador de Ana): en `home-ana/trabajo/manual-m05-fallo/docs/herramientas.md`, borra la primera línea, `# Herramientas`, y guarda.
 
 **Por qué:** es el error más fácil de cometer al editar una página: el script de validación exige que la primera línea con texto empiece por `# `.
 
@@ -51,28 +52,31 @@ Abre `docs/herramientas.md` en VS Code y borra la primera línea, `# Herramienta
 
 ### 2 — Publica el cambio sin validar
 
-**Acción:**
+**Acción** (💻 Ordenador de Ana):
 
 ```bash
+# 💻 Ordenador de Ana
 git commit -am "Quita el título de herramientas"
 git push
 ```
 
-**Por qué:** simulas a alguien que publica sin ejecutar la validación en su equipo. Es justo el caso que el pipeline debe atrapar.
+**Por qué:** simulas a alguien que publica sin ejecutar la validación en su ordenador. Es justo el caso que el pipeline debe atrapar.
 
 **Resultado esperado:** `1 file changed, 1 deletion(-)` en el commit y `main -> main` en el push. Git no se queja: no sabe nada de títulos.
 
 ### 3 — Mira el pipeline en rojo
 
-**Acción:** en GitLab, abre **Build → Pipelines** y haz clic en el pipeline del commit «Quita el título de herramientas».
+**Acción** (🌐 GitLab, sesión de Ana): abre **Build → Pipelines** y haz clic en el pipeline del commit «Quita el título de herramientas».
 
 **Por qué:** el grafo dice en qué stage se ha parado y qué se ha dejado de hacer.
 
-**Resultado esperado:** el pipeline en **Failed**. En la columna `validar`, `validar-paginas` en **Failed**; en `construir`, `construir-manual` en **Skipped**: con una página rota no se genera el manual.
+**Resultado esperado:** el pipeline en **Failed**. En la columna `validar`, `validar-paginas` en **Failed**; en `construir`, `construir-manual` en **Skipped**: con una página rota no se genera el proyecto.
+
+> 📷 **Captura pendiente** · `M05-03-pipeline-failed.png` — GitLab, sesión de Ana: el pipeline en **Failed** con `construir-manual` en **Skipped**.
 
 ### 4 — Lee el log del job fallido
 
-**Acción:** haz clic en `validar-paginas` y ve al final del log.
+**Acción** (🌐 GitLab, sesión de Ana): haz clic en `validar-paginas` y ve al final del log.
 
 **Por qué:** el estado dice *que* ha fallado; el log dice *por qué*. Las líneas del principio (runner, imagen, clonado) son las mismas de un job correcto: lo que importa está tras el comando `$`.
 
@@ -94,7 +98,7 @@ ERROR: Job failed: exit code 1
 
 ### 5 — Distingue las dos líneas `ERROR`
 
-**Acción:** en el log, localiza las dos líneas que empiezan por `ERROR`.
+**Acción** (🌐 GitLab, sesión de Ana): en el log, localiza las dos líneas que empiezan por `ERROR`.
 
 **Por qué:** no dicen lo mismo y conviene no confundirlas cuando un log es largo.
 
@@ -109,9 +113,9 @@ La primera es la que te dice qué arreglar.
 
 ### 6 — Reproduce el fallo en local
 
-**Acción:** `sh scripts/validar.sh`
+**Acción** (💻 Ordenador de Ana): `sh scripts/validar.sh`
 
-**Por qué:** si el error aparece en tu equipo, puedes corregirlo y comprobarlo sin hacer un push por cada intento.
+**Por qué:** si el error aparece en el ordenador de Ana, se puede corregir y comprobarlo sin hacer un push por cada intento.
 
 **Resultado esperado:** la misma salida que en el log:
 
@@ -124,11 +128,9 @@ revisado docs/normas-de-trabajo.md
 1 error(es)
 ```
 
-Con `echo $?` justo después ves el `1` que el runner ha convertido en `Job failed`.
-
 ### 7 — Restaura el título
 
-**Acción:** en `docs/herramientas.md`, vuelve a escribir `# Herramientas` como primera línea. Guarda y ejecuta otra vez `sh scripts/validar.sh`.
+**Acción** (📝 VS Code, ordenador de Ana): en `home-ana/trabajo/manual-m05-fallo/docs/herramientas.md`, vuelve a escribir `# Herramientas` como primera línea y guarda. Después, en el ordenador de Ana (💻), ejecuta otra vez `sh scripts/validar.sh`.
 
 **Por qué:** corriges y compruebas en local antes de publicar.
 
@@ -144,9 +146,10 @@ Todas las páginas son correctas
 
 ### 8 — Publica la corrección
 
-**Acción:**
+**Acción** (💻 Ordenador de Ana):
 
 ```bash
+# 💻 Ordenador de Ana
 git commit -am "Restaura el título de herramientas"
 git push
 ```
@@ -158,7 +161,7 @@ git push
 ## Comprueba tu entendimiento
 
 **Un enlace roto también para el pipeline**
-En `docs/bienvenida.md`, cambia `(herramientas.md)` por `(herramienta.md)` y ejecuta `sh scripts/validar.sh`.
+En VS Code, en `home-ana/trabajo/manual-m05-fallo/docs/bienvenida.md`, cambia `(herramientas.md)` por `(herramienta.md)` y guarda; después, en el ordenador de Ana, ejecuta `sh scripts/validar.sh`.
 → Aparece una línea `ERROR docs/bienvenida.md: enlace roto a herramienta.md` y el script termina con `1 error(es)`. Deshaz el cambio con `git restore docs/bienvenida.md`.
 
 **Dónde está la causa**
@@ -182,8 +185,8 @@ El log de `validar-paginas` tendrá dos líneas del script: `ERROR docs/herramie
 
 | Síntoma | Causa probable | Cómo arreglarlo |
 |---------|----------------|-----------------|
-| El job se queda en **Pending** y no llega a ejecutarse | No hay ningún runner disponible para el proyecto | Mira **Settings → CI/CD → Runners**; si no hay ninguno activo, avisa al formador. No es un fallo de tu cambio |
-| El pipeline aparece fallido sin ningún job y GitLab lo marca como YAML inválido | Has tocado el `.gitlab-ci.yml` y la sangría o la sintaxis no son correctas | Abre **Build → Pipeline editor**, que señala la línea del problema; corrige y vuelve a publicar |
+| El job se queda en **Pending** y no llega a ejecutarse | No hay ningún runner disponible para el proyecto | Mira **Settings → CI/CD → Runners**; si no hay ninguno activo, ejecuta `infra/bootstrap.sh` en el terminal del Codespace. No es un fallo del cambio |
+| El pipeline aparece fallido sin ningún job y GitLab lo marca como YAML inválido | Se tocó el `.gitlab-ci.yml` y la sangría o la sintaxis no son correctas | Abre **Build → Pipeline editor**, que señala la línea del problema; corrige y vuelve a publicar |
 | El log es muy largo y no encuentras el error | Las líneas de preparación del runner ocupan la mayor parte | Ve al final del log y sube hasta la línea que empieza por `$`; el error está debajo |
 | En local dice `Todas las páginas son correctas`, pero el pipeline falla | No has hecho commit de lo que corregiste, o no has hecho push | `git status` y `git log origin/main --oneline -1`: el commit corregido tiene que estar en GitLab |
 | Tras corregir, el pipeline fallido sigue en rojo | Cada pipeline corresponde a un commit; el antiguo no cambia | Mira el pipeline más reciente, el del commit de corrección |

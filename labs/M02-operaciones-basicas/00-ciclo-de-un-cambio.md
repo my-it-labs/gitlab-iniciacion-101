@@ -2,38 +2,48 @@
 
 [← Página anterior](README.md) · [Siguiente página →](01-lab-clonar.md)
 
-El equipo ha decidido adelantar la reunión de los lunes y hay que reflejarlo en el manual. Esta demostración sigue ese cambio de principio a fin: el proyecto `manual-equipo` se trae de GitLab al equipo, la página se edita en VS Code, el cambio se registra en un commit y se publica, y al final aparece en GitLab con su autor y sus líneas cambiadas. Es el recorrido que se repite en cada cambio del manual.
+El equipo ha decidido adelantar la reunión de los lunes y Ana se encarga de reflejarlo en el proyecto. Esta demostración sigue ese cambio de principio a fin: el proyecto `manual-equipo` se trae de GitLab al ordenador de Ana, la página se edita allí, el cambio se registra en un commit y se publica, y al final aparece en GitLab con su autora y sus líneas cambiadas. Es el recorrido que se repite en cada cambio del proyecto.
 
 ## Punto de partida
 
-- Proyecto en GitLab: `https://gitlab.ejemplo.com/ana/manual-m02-demo`, creado desde la carpeta del repo del curso con:
+- El entorno de prácticas levantado ([El entorno de prácticas](../../infra/README.md)).
+- Proyecto en GitLab `ana/manual-m02-demo`, creado con:
 
   ```bash
-  scripts/partida.sh manual-m02-demo --solo-remoto
+  # 🖥️ Terminal del Codespace
+  scripts/partida.sh ana manual-m02-demo --solo-remoto
   ```
 
-  Tiene el manual completo y tres commits de historial. Con `--solo-remoto` no se clona: el clonado forma parte del recorrido.
-- Identidad: usuaria `ana`, con Git configurado como `ana` / `ana@equipo.local` y un token de acceso personal con los scopes `api` y `write_repository` (se crean en [Lab — Identidad y acceso](../M01-introduccion-git-gitlab/01-lab-identidad-y-acceso.md)).
-- Equipo: Git, VS Code y una terminal (Git Bash en Windows). Las copias de trabajo van en `~/trabajo/`.
+  Tiene el documento completo y tres commits de historial. Con `--solo-remoto` no se clona: el clonado forma parte del recorrido. El script deja además el ordenador de Ana con su identidad de Git (`Ana` / `ana@equipo.local`) y su clave SSH registrada en GitLab, como en el [lab de identidad y acceso](../M01-introduccion-git-gitlab/01-lab-identidad-y-acceso.md).
+- Todo lo que sigue en la terminal ocurre en el ordenador de Ana:
+
+  ```bash
+  # 🖥️ Terminal del Codespace
+  docker exec -it pc-ana bash
+  ```
 
 ## Recorrido
 
-1. **La URL de clonado.** En la página del proyecto, el botón **Code** despliega las direcciones del repositorio. En **Clone with HTTPS** está la que se usa en el curso: `https://gitlab.ejemplo.com/ana/manual-m02-demo.git`.
+1. **La URL de clonado** (🌐 GitLab, sesión de Ana). En la página del proyecto, el botón **Code** despliega las direcciones del repositorio. En **Clone with SSH** está la que se usa en el curso: `git@gitlab:ana/manual-m02-demo.git`.
 
-2. **El clonado.** En la terminal, desde `~/trabajo`:
+   > 📷 **Captura pendiente** · `M02-00-clone-ssh.png` — GitLab, sesión de Ana: desplegable **Code** de `manual-m02-demo`.
+
+2. **El clonado.** En el ordenador de Ana, desde `~/trabajo`:
 
    ```console
-   $ git clone https://gitlab.ejemplo.com/ana/manual-m02-demo.git
+   # 💻 Ordenador de Ana
+   $ git clone git@gitlab:ana/manual-m02-demo.git
    Cloning into 'manual-m02-demo'...
    ```
 
-   Como el proyecto es privado, Git pide usuario (`ana`) y contraseña (el token). Al acabar existe `~/trabajo/manual-m02-demo` con `README.md`, `docs/` y `scripts/`, y el historial completo: los tres commits del proyecto están ya en el equipo.
+   Git no pide usuario ni contraseña: el ordenador de Ana se identifica ante GitLab con su clave SSH. Al acabar existe `~/trabajo/manual-m02-demo` con `README.md`, `docs/` y `scripts/`, y el historial completo: los tres commits del proyecto están ya en el ordenador de Ana.
 
-3. **La edición en VS Code.** Con `code .` dentro de la carpeta se abre el proyecto. En `docs/normas-de-trabajo.md`, bajo `## Reuniones`, la línea `- Reunión de equipo: lunes a las 10:00.` pasa a `- Reunión de equipo: lunes a las 9:30.` y se guarda el archivo. VS Code marca el archivo con una `M` en el explorador y en la vista **Source Control**.
+3. **La edición** (📝 VS Code, ordenador de Ana). El clon aparece en el explorador de VS Code como `home-ana/trabajo/manual-m02-demo/`. Ana abre `docs/normas-de-trabajo.md` y, bajo `## Reuniones`, la línea `- Reunión de equipo: lunes a las 10:00.` pasa a `- Reunión de equipo: lunes a las 9:30.`. Guarda. El editor no sabe nada de Git: solo cambia el archivo.
 
-4. **El estado.** `git status` confirma lo que ve VS Code: el archivo está modificado, pero aún no preparado para el commit.
+4. **El estado.** `git status` detecta el cambio: el archivo está modificado, pero aún no preparado para el commit.
 
    ```console
+   # 💻 Ordenador de Ana
    $ git status
    On branch main
    Your branch is up to date with 'origin/main'.
@@ -61,6 +71,7 @@ El equipo ha decidido adelantar la reunión de los lunes y hay que reflejarlo en
 5. **La preparación.** `git add docs/normas-de-trabajo.md` pasa el cambio al área de preparación. El archivo cambia de bloque en `git status`:
 
    ```console
+   # 💻 Ordenador de Ana
    $ git status
    On branch main
    Your branch is up to date with 'origin/main'.
@@ -70,28 +81,31 @@ El equipo ha decidido adelantar la reunión de los lunes y hay que reflejarlo en
    	modified:   docs/normas-de-trabajo.md
    ```
 
-6. **El commit.** El mensaje dice qué cambia en el manual, no qué archivo se tocó:
+6. **El commit.** El mensaje dice qué cambia en el proyecto, no qué archivo se tocó:
 
    ```console
+   # 💻 Ordenador de Ana
    $ git commit -m "Adelanta la reunión de equipo a las 9:30"
    [main 90b49e9] Adelanta la reunión de equipo a las 9:30
     1 file changed, 1 insertion(+), 1 deletion(-)
    ```
 
-   En este momento el commit solo existe en el equipo de `ana`. En GitLab todavía no hay nada nuevo.
+   En este momento el commit solo existe en el ordenador de Ana. En GitLab todavía no hay nada nuevo.
 
-7. **La publicación.** `git push` sube el commit a GitLab:
+7. **La publicación.** `git push` sube el commit a GitLab por SSH:
 
    ```console
+   # 💻 Ordenador de Ana
    $ git push
    ...
-   To https://gitlab.ejemplo.com/ana/manual-m02-demo.git
+   To gitlab:ana/manual-m02-demo.git
       6805161..90b49e9  main -> main
    ```
 
    Antes salen unas líneas de progreso (`Enumerating objects`, `Writing objects`…). La última línea dice que la rama `main` de GitLab ha pasado del commit `6805161` al `90b49e9`. Después, `git status` vuelve a `Your branch is up to date with 'origin/main'.` y `git log --oneline` muestra el commit nuevo encima de los tres de partida:
 
    ```console
+   # 💻 Ordenador de Ana
    $ git log --oneline
    90b49e9 Adelanta la reunión de equipo a las 9:30
    6805161 Añade normas de trabajo y scripts de validación
@@ -99,7 +113,9 @@ El equipo ha decidido adelantar la reunión de los lunes y hay que reflejarlo en
    e51f242 Crea el manual del equipo
    ```
 
-8. **El commit en GitLab.** En la barra lateral, **Code** → **Commits** lista los commits de `main`. El primero es «Adelanta la reunión de equipo a las 9:30», de `ana`, con el mismo identificador corto. Al abrirlo aparece el diff de `docs/normas-de-trabajo.md` con la línea de las 10:00 en rojo y la de las 9:30 en verde. En **Code** → **Repository**, la página `docs/normas-de-trabajo.md` ya dice 9:30.
+8. **El commit en GitLab** (🌐 GitLab, sesión de Ana). En la barra lateral, **Code** → **Commits** lista los commits de `main`. El primero es «Adelanta la reunión de equipo a las 9:30», de Ana, con el mismo identificador corto. Al abrirlo aparece el diff de `docs/normas-de-trabajo.md` con la línea de las 10:00 en rojo y la de las 9:30 en verde. En **Code** → **Repository**, la página `docs/normas-de-trabajo.md` ya dice 9:30.
+
+   > 📷 **Captura pendiente** · `M02-00-commit-en-gitlab.png` — GitLab, sesión de Ana: el commit «Adelanta la reunión de equipo a las 9:30» con su diff.
 
 > [!NOTE]
 > Los identificadores de commit (`90b49e9`…) son distintos en cada proyecto: dependen del contenido, el autor y la fecha.

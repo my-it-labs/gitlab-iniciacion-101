@@ -2,66 +2,109 @@
 
 [← Página anterior](00-control-de-versiones.md) · [Siguiente página →](02-lab-primer-proyecto.md)
 
-Cada cambio del manual del equipo va a quedar firmado con un nombre y un correo, y esa firma la pone Git con lo que tú le configures. En este lab dejas Git listo para firmar como tú, entras en la instancia de GitLab del curso y creas el token con el que Git se identificará ante GitLab al subir cambios.
+El equipo del proyecto son dos personas, Ana y Luis, cada una con su ordenador. Cada cambio que hagan va a quedar firmado con un nombre y un correo, y esa firma la pone Git con lo que cada uno configure en su ordenador. Además, para subir cambios a GitLab, el ordenador de cada persona tiene que demostrar quién es: lo hace con una clave SSH. En este lab te sientas primero en el ordenador de Ana y después en el de Luis, y dejas a los dos listos para trabajar.
 
 ### Objetivo
 
-Git configurado con tu nombre, tu correo y la rama `main` por defecto; un commit de prueba que lleva tu identidad, y un token de acceso personal de GitLab guardado para los labs siguientes.
+En el ordenador de Ana y en el de Luis: Git configurado con su nombre, su correo y la rama `main` por defecto, un commit de prueba con su firma y una clave SSH registrada en su perfil de GitLab, comprobada con `ssh -T git@gitlab`.
 
 ### Punto de partida
 
-- Terminal (Git Bash en Windows) y Git instalado.
-- Instancia de GitLab del curso: `https://gitlab.ejemplo.com` (el formador te da la URL real).
-- Credenciales: tu usuario de GitLab (en las páginas, `ana`) y su contraseña inicial.
-- No hace falta nada de páginas anteriores. Los valores de ejemplo son los de Ana: `Ana` y `ana@equipo.local`; usa los tuyos.
+- El entorno de prácticas levantado con `infra/bootstrap.sh`. Qué es cada pieza y cómo se entra en cada ordenador: [El entorno de prácticas](../../infra/README.md).
+- GitLab en `http://localhost:8080`, con las cuentas `ana` y `luis` y la contraseña `Formacion-2026!`.
+- No hace falta nada de páginas anteriores. Si ya hiciste este lab, los pasos de configuración se pueden repetir sin problema; en los de la clave, `ssh-keygen` te preguntará si quieres sobrescribirla: responde `n` y sigue con la que ya tienes.
 
 ### En qué consiste
 
-Configuras tres valores globales de Git, entras en GitLab, creas un token con los permisos `api` y `write_repository` y compruebas con un repositorio de prueba que los commits salen con tu nombre. No subes nada a GitLab todavía.
+En el ordenador de Ana configuras tres valores de Git, haces un commit de prueba para ver la firma y generas su par de claves SSH. Después, en GitLab con la sesión de Ana, registras la clave pública y, de vuelta en su ordenador, compruebas que GitLab la reconoce. Al final repites lo esencial en el ordenador de Luis.
 
-### 1 — Comprueba que Git está instalado
+## Ana
 
-**Acción:** `git --version`
+### 1 — Entra en el ordenador de Ana
 
-**Por qué:** todos los labs dan por hecho Git 2.40 o posterior. Si la terminal no lo encuentra, no tiene sentido seguir.
+**Acción:**
 
-**Resultado esperado:** una línea con la versión, por ejemplo:
-
-```text
-git version 2.53.0
+```bash
+# 🖥️ Terminal del Codespace
+docker exec -it pc-ana bash
 ```
 
-### 2 — Configura tu nombre
+**Por qué:** a partir de aquí todo lo que escribas lo hace Ana en su ordenador, `pc-ana`. Su configuración de Git y su clave SSH se guardan en su carpeta personal, `/home/ana`, y no las comparte con nadie.
 
-**Acción:** `git config --global user.name "Ana"`
+**Resultado esperado:** el prompt cambia y dice quién eres y en qué ordenador estás:
 
-**Por qué:** es el nombre que aparecerá como autor en cada commit del manual, en tu terminal y en GitLab. `--global` lo guarda para todos tus repositorios.
+```text
+ana@pc-ana:~$
+```
+
+### 2 — Comprueba que Git está instalado
+
+**Acción:**
+
+```bash
+# 💻 Ordenador de Ana
+git --version
+```
+
+**Por qué:** todos los labs dan por hecho Git 2.40 o posterior.
+
+**Resultado esperado:** una línea con la versión:
+
+```text
+[salida pendiente: se captura al validar]
+```
+
+### 3 — Configura el nombre de Ana
+
+**Acción:**
+
+```bash
+# 💻 Ordenador de Ana
+git config --global user.name "Ana"
+```
+
+**Por qué:** es el nombre que aparecerá como autor en cada commit de Ana, en su terminal y en GitLab. `--global` lo guarda para todos los repositorios de este ordenador.
 
 **Resultado esperado:** el comando no imprime nada. `git config --global user.name` responde `Ana`.
 
-### 3 — Configura tu correo
+### 4 — Configura el correo de Ana
 
-**Acción:** `git config --global user.email "ana@equipo.local"`
+**Acción:**
 
-**Por qué:** GitLab asocia cada commit a una cuenta por el correo. Usa el mismo correo que tiene tu cuenta de la instancia del curso: así, en **Code** → **Commits**, el commit aparece enlazado a tu perfil y con tu avatar.
+```bash
+# 💻 Ordenador de Ana
+git config --global user.email "ana@equipo.local"
+```
+
+**Por qué:** GitLab asocia cada commit a una cuenta por el correo. `ana@equipo.local` es el de la cuenta `ana` en GitLab: así, en **Code** → **Commits**, los commits de Ana aparecen enlazados a su perfil y con su avatar.
 
 **Resultado esperado:** sin salida. `git config --global user.email` responde `ana@equipo.local`.
 
-### 4 — Usa `main` como rama inicial
+### 5 — Usa `main` como rama inicial
 
-**Acción:** `git config --global init.defaultBranch main`
+**Acción:**
 
-**Por qué:** GitLab llama `main` a la rama principal de los proyectos nuevos. Sin este ajuste, `git init` crea `master` y avisa con un bloque de `hint:`; tu repositorio local y el de GitLab tendrían ramas con nombres distintos.
+```bash
+# 💻 Ordenador de Ana
+git config --global init.defaultBranch main
+```
+
+**Por qué:** GitLab llama `main` a la rama principal de los proyectos nuevos. Sin este ajuste, `git init` crea `master` y avisa con un bloque de `hint:`; el repositorio de Ana y el de GitLab tendrían ramas con nombres distintos.
 
 **Resultado esperado:** sin salida.
 
-### 5 — Revisa la configuración
+### 6 — Revisa la configuración
 
-**Acción:** `git config --global --list`
+**Acción:**
+
+```bash
+# 💻 Ordenador de Ana
+git config --global --list
+```
 
 **Por qué:** de un vistazo confirmas los tres valores y detectas una errata en el correo antes de que quede en el historial.
 
-**Resultado esperado:** al menos estas tres líneas (Git escribe la clave en minúsculas):
+**Resultado esperado:** estas tres líneas (Git escribe la clave en minúsculas):
 
 ```text
 user.name=Ana
@@ -69,53 +112,43 @@ user.email=ana@equipo.local
 init.defaultbranch=main
 ```
 
-### 6 — Crea un repositorio de prueba
-
-**Acción:**
-
-```bash
-mkdir -p ~/trabajo/prueba-identidad
-cd ~/trabajo/prueba-identidad
-git init
-```
-
-**Por qué:** un repositorio desechable para comprobar la identidad sin tocar el manual.
-
-**Resultado esperado:**
-
-```text
-Initialized empty Git repository in /home/ana/trabajo/prueba-identidad/.git/
-```
-
-Sin ningún `hint:` sobre `master`: el paso 4 ha funcionado.
-
 ### 7 — Haz un commit de prueba
 
-**Acción:**
+**Acción** (📝 VS Code, ordenador de Ana): en el explorador de VS Code, despliega `home-ana/`: es la carpeta personal de Ana. Crea dentro la carpeta `trabajo/prueba-identidad/` y, en ella, el archivo `prueba.md` con una sola línea, `# Prueba`. Guarda.
+
+**Acción** (💻 Ordenador de Ana): convierte la carpeta en repositorio y haz el commit:
 
 ```bash
-echo "# Prueba" > prueba.md
+# 💻 Ordenador de Ana
+cd ~/trabajo/prueba-identidad
+git init
 git add prueba.md
 git commit -m "Comprueba la identidad"
 ```
 
-**Por qué:** la configuración solo se nota al crear un commit, que es cuando Git escribe el autor.
+**Por qué:** lo que creas en `home-ana/` con VS Code está en el ordenador de Ana: es la misma carpeta que su `~`. La configuración solo se nota al crear un commit, que es cuando Git escribe el autor. El repositorio es desechable: no toca el proyecto.
 
-**Resultado esperado:**
+**Resultado esperado:** `git init` sin ningún `hint:` sobre `master` (el paso 5 ha funcionado) y el commit en `main`:
 
 ```text
+Initialized empty Git repository in /home/ana/trabajo/prueba-identidad/.git/
 [main (root-commit) 74fda49] Comprueba la identidad
  1 file changed, 1 insertion(+)
  create mode 100644 prueba.md
 ```
 
-El identificador (`74fda49`) será otro en tu equipo.
+El identificador (`74fda49`) será otro en tu entorno.
 
-### 8 — Comprueba el autor del commit
+### 8 — Comprueba la firma del commit
 
-**Acción:** `git log -1 --format='%an <%ae>'`
+**Acción:**
 
-**Por qué:** es la firma que verá el equipo en el historial del manual.
+```bash
+# 💻 Ordenador de Ana
+git log -1 --format='%an <%ae>'
+```
+
+**Por qué:** es la firma que verá el equipo en el historial del proyecto.
 
 **Resultado esperado:**
 
@@ -123,74 +156,201 @@ El identificador (`74fda49`) será otro en tu equipo.
 Ana <ana@equipo.local>
 ```
 
-### 9 — Entra en la instancia de GitLab
+### 9 — Genera la clave SSH de Ana
 
 **Acción:**
-1. Abre `https://gitlab.ejemplo.com` en el navegador.
-2. En **Username or primary email**, escribe `ana`; en **Password**, la contraseña inicial.
+
+```bash
+# 💻 Ordenador de Ana
+ssh-keygen -t ed25519 -C "ana@pc-ana"
+```
+
+Pulsa **Enter** en las tres preguntas: ubicación por defecto y sin frase de paso.
+
+**Por qué:** una clave SSH son dos archivos. La **privada** (`~/.ssh/id_ed25519`) no sale nunca del ordenador de Ana; la **pública** (`~/.ssh/id_ed25519.pub`) se entrega a GitLab. Cuando Ana haga `git push`, su ordenador demuestra con la privada que es el dueño de la pública que GitLab tiene registrada, sin enviar ninguna contraseña. El comentario `ana@pc-ana` sirve para reconocer en GitLab de qué ordenador es la clave.
+
+**Resultado esperado:** el aviso de que se han guardado los dos archivos y la huella de la clave:
+
+```text
+[salida pendiente: se captura al validar]
+```
+
+> [!NOTE]
+> En tu trabajo real, ponle una frase de paso a la clave: si alguien copia el archivo privado, sin la frase no le sirve. Aquí se deja vacía para que los labs no la pidan en cada push.
+
+### 10 — Copia la clave pública
+
+**Acción** (📝 VS Code, ordenador de Ana): en el explorador, abre `home-ana/.ssh/id_ed25519.pub` (la que acaba en `.pub`), selecciona la línea completa y cópiala.
+
+**Por qué:** es lo que vas a pegar en GitLab. Es pública: enseñarla no es un riesgo. Al lado está `id_ed25519`, sin `.pub`: es la privada, y no se abre ni se copia nunca.
+
+**Resultado esperado:** una sola línea que empieza por `ssh-ed25519` y termina en `ana@pc-ana`.
+
+> 📷 **Captura pendiente** · `M01-01-clave-publica-vscode.png` — VS Code: `home-ana/.ssh/` con los dos archivos y `id_ed25519.pub` abierto.
+
+### 11 — Entra en GitLab como Ana
+
+**Acción** (🌐 GitLab, sesión de Ana):
+1. Abre `http://localhost:8080` en una ventana normal del navegador.
+2. En **Username or primary email**, escribe `ana`; en **Password**, `Formacion-2026!`.
 3. Pulsa **Sign in**.
 4. Si GitLab te pide cambiar la contraseña, escribe la actual y la nueva dos veces y confirma.
 
-**Por qué:** el proyecto del manual vivirá en tu espacio de esta instancia (`ana/…`), y el token se crea desde tu perfil.
+**Por qué:** la clave se registra en el perfil de la persona. GitLab sabrá que todo lo que llegue firmado con ella viene de Ana.
 
-**Resultado esperado:** la página de inicio de GitLab con la barra lateral izquierda y tu avatar arriba.
+**Resultado esperado:** la página de inicio de GitLab con la barra lateral izquierda y el avatar de Ana arriba.
 
-### 10 — Abre la página de tokens
+> 📷 **Captura pendiente** · `M01-01-inicio-ana.png` — GitLab, sesión de Ana: página de inicio con el avatar.
+
+### 12 — Registra la clave de Ana
+
+**Acción** (🌐 GitLab, sesión de Ana):
+1. Pulsa el avatar y elige **Edit profile**.
+2. En la barra lateral de **User settings**, pulsa **SSH Keys**.
+3. Pulsa **Add new key**.
+4. En **Key**, pega la línea que copiaste en el paso 10 desde `home-ana/.ssh/id_ed25519.pub`.
+5. **Title** se rellena solo con `ana@pc-ana`; déjalo así.
+6. Deja **Usage type** y **Expiration date** como estén y pulsa **Add key**.
+
+**Por qué:** desde ahora, GitLab acepta las conexiones SSH que vengan del ordenador de Ana como si fueran Ana. Si mañana Ana cambia de ordenador, se registra la clave del nuevo y se borra la del viejo, sin tocar la contraseña.
+
+**Resultado esperado:** la página de la clave con su título `ana@pc-ana` y su huella (*fingerprint*). En **SSH Keys** aparece una fila con ese título.
+
+> 📷 **Captura pendiente** · `M01-01-ssh-key-ana.png` — GitLab, sesión de Ana: **SSH Keys** con la clave `ana@pc-ana`.
+
+### 13 — Comprueba que GitLab reconoce a Ana
 
 **Acción:**
-1. Pulsa tu avatar y elige **Edit profile**.
-2. En la barra lateral de **User settings**, pulsa **Access tokens**.
-3. Pulsa **Add new token**.
 
-**Por qué:** al subir cambios por HTTPS, Git te pedirá usuario y contraseña. Como contraseña no se usa la de tu cuenta, sino un token: se puede limitar a lo que hace falta y revocar sin cambiar la contraseña.
+```bash
+# 💻 Ordenador de Ana
+ssh -T git@gitlab
+```
 
-**Resultado esperado:** un formulario con **Token name**, **Expiration date** y una lista de **scopes** con casillas.
+La primera vez, SSH pregunta si confías en el servidor `gitlab`: escribe `yes` y pulsa **Enter**.
 
-> [!NOTE]
-> En las versiones más recientes, GitLab ofrece dos tipos de token: el clásico (*legacy*), con scopes como `api`, y el de permisos finos (*fine-grained*). Si te pregunta cuál, elige el clásico: es el que usa este curso.
+**Por qué:** `-T` abre una conexión SSH con GitLab sin pedir una terminal: GitLab solo contesta quién cree que eres. La pregunta del principio sale una sola vez por servidor; la respuesta queda en `~/.ssh/known_hosts` y protege a Ana de conectarse sin saberlo a otro servidor que se haga pasar por GitLab.
 
-### 11 — Crea el token
+**Resultado esperado:** la pregunta de confianza la primera vez y, al final, el saludo con el usuario de Ana:
+
+```text
+[salida pendiente: se captura al validar]
+```
+
+La última línea tiene que ser `Welcome to GitLab, @ana!`.
+
+### 14 — Sal del ordenador de Ana
 
 **Acción:**
-1. En **Token name**, escribe `curso-gitlab`.
-2. Deja la **Expiration date** que propone GitLab o pon una posterior al final del curso.
-3. Marca los scopes `api` y `write_repository`.
-4. Pulsa el botón que confirma el formulario: **Generate token** (en versiones anteriores, **Create personal access token**).
 
-**Por qué:** `write_repository` permite a Git clonar y hacer push; `api` permite al script de punto de partida del curso (`scripts/partida.sh`) crear proyectos en tu nombre.
+```bash
+# 💻 Ordenador de Ana
+exit
+```
 
-**Resultado esperado:** arriba aparece el aviso **Your new token has been created** con el valor oculto y un botón para copiarlo. Debajo, en la tabla de tokens activos, la fila `curso-gitlab` con los scopes `api, write_repository`.
+**Por qué:** vuelves al terminal del Codespace para sentarte en el ordenador de Luis. Lo configurado se queda guardado en el de Ana.
 
-> [!WARNING]
-> GitLab solo enseña el valor del token una vez. Si cierras la página sin copiarlo, no se puede recuperar: revócalo y crea otro.
+**Resultado esperado:** el prompt vuelve a ser el del Codespace y ya no dice `ana@pc-ana`.
 
-### 12 — Guarda el token
+## Luis
 
-**Acción:** copia el token con el botón de copiar y guárdalo en tu gestor de contraseñas, con el nombre `GitLab curso — token`.
+Luis hace lo mismo en su ordenador. Los pasos son los de Ana con sus datos; el porqué de cada uno está arriba.
 
-**Por qué:** lo vas a pegar como contraseña en el primer push y la primera vez que ejecutes `scripts/partida.sh` (que lo guarda en `~/.curso-gitlab`). No lo pegues en un documento compartido ni en un archivo del manual: quien lo tenga puede escribir en tus proyectos.
+### 15 — Entra en el ordenador de Luis y configura Git
 
-**Resultado esperado:** el token guardado fuera de GitLab, y la fila `curso-gitlab` visible en **Access tokens**.
+**Acción:**
+
+```bash
+# 🖥️ Terminal del Codespace
+docker exec -it pc-luis bash
+```
+
+```bash
+# 💻 Ordenador de Luis
+git config --global user.name "Luis"
+git config --global user.email "luis@equipo.local"
+git config --global init.defaultBranch main
+git config --global --list
+```
+
+**Por qué:** cada ordenador tiene su propia configuración. Lo que configuraste en el de Ana no existe en el de Luis: si Luis hiciera un commit sin este paso, Git no sabría quién es.
+
+**Resultado esperado:** el prompt `luis@pc-luis:~$` y, tras el último comando:
+
+```text
+user.name=Luis
+user.email=luis@equipo.local
+init.defaultbranch=main
+```
+
+### 16 — Genera la clave SSH de Luis
+
+**Acción:**
+
+```bash
+# 💻 Ordenador de Luis
+ssh-keygen -t ed25519 -C "luis@pc-luis"
+```
+
+Pulsa **Enter** en las tres preguntas. Después, en VS Code (📝), abre `home-luis/.ssh/id_ed25519.pub` y copia su línea.
+
+**Por qué:** la clave de Luis es suya y distinta de la de Ana. Así GitLab distingue quién sube cada cambio aunque los dos trabajen en el mismo proyecto.
+
+**Resultado esperado:** `ssh-keygen` informa de los dos archivos creados, y `id_ed25519.pub` tiene una línea que empieza por `ssh-ed25519` y termina en `luis@pc-luis`. Fíjate en la carpeta: `home-luis/`, no `home-ana/`.
+
+### 17 — Registra la clave de Luis
+
+**Acción** (🌐 GitLab, sesión de Luis):
+1. Abre una **ventana privada** del navegador y entra en `http://localhost:8080` con `luis` y `Formacion-2026!`.
+2. Avatar → **Edit profile** → **SSH Keys** → **Add new key**.
+3. Pega la clave en **Key**, deja **Title** en `luis@pc-luis` y pulsa **Add key**.
+
+**Por qué:** la ventana privada tiene su propia sesión, así que Ana sigue conectada en la ventana normal. Comprueba el avatar antes de pulsar **Add key**: si registras la clave de Luis en el perfil de Ana, GitLab creerá que los cambios de Luis son de Ana.
+
+**Resultado esperado:** en **SSH Keys** de Luis, una fila con el título `luis@pc-luis`.
+
+> 📷 **Captura pendiente** · `M01-01-ssh-key-luis.png` — GitLab, sesión de Luis (ventana privada): **SSH Keys** con la clave `luis@pc-luis`.
+
+### 18 — Comprueba que GitLab reconoce a Luis
+
+**Acción:**
+
+```bash
+# 💻 Ordenador de Luis
+ssh -T git@gitlab
+```
+
+Responde `yes` a la pregunta de confianza.
+
+**Por qué:** es la misma comprobación que hiciste con Ana; ahora GitLab tiene que responder con el otro usuario.
+
+**Resultado esperado:**
+
+```text
+[salida pendiente: se captura al validar]
+```
+
+La última línea tiene que ser `Welcome to GitLab, @luis!`.
 
 ## Comprueba tu entendimiento
 
-**La identidad que usará Git**
-En cualquier carpeta, ejecuta `git config user.name` y `git config user.email`.
-→ `Ana` y `ana@equipo.local` (con tus valores).
+**Cada ordenador, su firma**
+En el ordenador de Ana y en el de Luis, ejecuta `git config user.email`.
+→ `ana@equipo.local` en `pc-ana` y `luis@equipo.local` en `pc-luis`.
 
-**De dónde sale el correo**
-Ejecuta `git config --show-origin user.email`.
-→ Una línea con la ruta de tu `.gitconfig` global (en Linux, `file:/home/ana/.gitconfig`) y el correo.
+**De dónde sale la configuración**
+En el ordenador de Ana, ejecuta `git config --show-origin user.email`.
+→ Una línea con `file:/home/ana/.gitconfig` y el correo: la configuración global es un archivo en la carpeta personal de Ana. En VS Code es `home-ana/.gitconfig`: ábrelo y verás los tres valores.
 
-**El token existe**
-En GitLab, abre tu avatar → **Edit profile** → **Access tokens**.
-→ La fila `curso-gitlab` con los scopes `api` y `write_repository`, sin el valor del token.
+**Cada clave, su persona**
+En los dos ordenadores, ejecuta `ssh -T git@gitlab`.
+→ `Welcome to GitLab, @ana!` en `pc-ana` y `Welcome to GitLab, @luis!` en `pc-luis`.
 
 ## Reto
 
 ### 1 — Otra identidad solo para un repositorio
 
-En `~/trabajo/prueba-identidad`, haz que los commits salgan con el correo `ana.manual@equipo.local` sin cambiar tu configuración global. Haz un commit y comprueba qué autor lleva.
+En el ordenador de Ana, haz que los commits de `~/trabajo/prueba-identidad` salgan con el correo `ana.manual@equipo.local` sin cambiar su configuración global. Haz un commit y comprueba qué autor lleva.
 
 <details>
 <summary>Ver solución</summary>
@@ -198,6 +358,7 @@ En `~/trabajo/prueba-identidad`, haz que los commits salgan con el correo `ana.m
 Sin `--global`, el valor se guarda en `.git/config` de ese repositorio y tiene prioridad sobre el global:
 
 ```bash
+# 💻 Ordenador de Ana
 cd ~/trabajo/prueba-identidad
 git config user.email "ana.manual@equipo.local"
 git config --show-origin --get-all user.email
@@ -208,7 +369,18 @@ file:/home/ana/.gitconfig	ana@equipo.local
 file:.git/config	ana.manual@equipo.local
 ```
 
-Tras un commit, `git log -1 --format='%an <%ae>'` muestra `Ana <ana.manual@equipo.local>`. En cualquier otro repositorio sigue valiendo `ana@equipo.local`.
+Tras un commit, `git log -1 --format='%an <%ae>'` muestra `Ana <ana.manual@equipo.local>`. En cualquier otro repositorio de Ana sigue valiendo `ana@equipo.local`.
+
+</details>
+
+### 2 — ¿Qué pasa si la clave está en el perfil equivocado?
+
+Sin hacerlo, razona: si en el paso 17 hubieras pegado la clave de Luis en el perfil de Ana, ¿qué respondería `ssh -T git@gitlab` en el ordenador de Luis?
+
+<details>
+<summary>Ver solución</summary>
+
+`Welcome to GitLab, @ana!`. GitLab identifica a quien se conecta solo por la clave: el ordenador de Luis entraría como Ana, y todo lo que Luis subiera llegaría a GitLab con los permisos de Ana. Por eso cada persona registra su clave en su propio perfil y comprueba el saludo.
 
 </details>
 
@@ -216,9 +388,11 @@ Tras un commit, `git log -1 --format='%an <%ae>'` muestra `Ana <ana.manual@equip
 
 | Síntoma | Causa probable | Cómo arreglarlo |
 |---------|----------------|-----------------|
-| `git commit` falla con `Author identity unknown` / `*** Please tell me who you are.` y `fatal: unable to auto-detect email address (got 'ana@portatil.(none)')` | Falta `user.name` o `user.email` | Repite los pasos 2 y 3 y vuelve a lanzar el `git commit` |
-| `git: command not found` (o `'git' is not recognized…` en Windows) | Git no está instalado o la terminal no lo encuentra | Instala Git (en Windows, Git for Windows) y abre una terminal nueva; en Windows usa Git Bash |
-| `git init` muestra `hint: Using 'master' as the name for the initial branch.` y `git status` dice `On branch master` | Falta `init.defaultBranch` | Haz el paso 4; en el repositorio ya creado, `git branch -m main` |
-| Los commits aparecen en GitLab sin tu avatar ni enlace a tu perfil | El `user.email` de Git no coincide con el correo de tu cuenta de GitLab | Cambia `user.email` al correo de tu cuenta; afecta a los commits nuevos |
-| No encuentras el valor del token | GitLab solo lo muestra al crearlo | En **Access tokens**, revoca `curso-gitlab` y crea uno nuevo (pasos 10 y 11) |
-| Un comando que usa el token responde `401` o pide la contraseña una y otra vez | Token caducado, revocado o sin el scope `write_repository` | Crea un token nuevo con `api` y `write_repository` |
+| `Error response from daemon: No such container: pc-ana` | El entorno no está levantado | En el terminal del Codespace, ejecuta `infra/bootstrap.sh` |
+| El prompt no dice `ana@pc-ana` o `luis@pc-luis` | Estás en el terminal del Codespace o en el otro ordenador | Mira el prompt; entra con `docker exec -it pc-ana bash` (o `pc-luis`) |
+| `git commit` falla con `Author identity unknown` / `*** Please tell me who you are.` | Falta `user.name` o `user.email` en ese ordenador | Repite los pasos 3 y 4 (o el 15 para Luis) en el ordenador donde estés |
+| `git init` muestra `hint: Using 'master' as the name for the initial branch.` | Falta `init.defaultBranch` | Haz el paso 5; en el repositorio ya creado, `git branch -m main` |
+| `ssh -T git@gitlab` responde `git@gitlab: Permission denied (publickey).` | La clave no está registrada en GitLab, o se pegó incompleta | Repite el paso 12 (o el 17) pegando la línea entera de `home-ana/.ssh/id_ed25519.pub` (o `home-luis/…`) |
+| `ssh -T git@gitlab` saluda al otro usuario | La clave se registró en el perfil equivocado | En el perfil que no toca, **SSH Keys** → borra la clave; regístrala en el correcto |
+| GitLab rechaza la clave con `Fingerprint sha256 has already been taken` | Esa clave ya está registrada, quizá en el otro perfil | Busca en **SSH Keys** de las dos cuentas y borra la que sobra |
+| Los commits aparecen en GitLab sin avatar ni enlace al perfil | El `user.email` de Git no coincide con el correo de la cuenta | Cambia `user.email` al correo de la cuenta; afecta a los commits nuevos |

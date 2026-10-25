@@ -2,14 +2,14 @@
 
 [← Página anterior](../M02-operaciones-basicas/04-lab-gitignore.md) · [Siguiente página →](00-ramas-como-punteros.md)
 
-Una página nueva del manual no debería verse a medias en la rama principal mientras la escribes. Aquí la trabajas en una rama, la fusionas cuando está lista y ves qué pasa cuando dos ramas cambian las mismas líneas de la misma página.
+Una página nueva del proyecto no debería verse a medias en la rama principal mientras la escribes. Aquí la trabajas en una rama, la fusionas cuando está lista y ves qué pasa cuando dos ramas cambian las mismas líneas de la misma página.
 
 ## Qué aprenderás
 
-- Trabajar una página nueva del manual sin tocar lo que ya está publicado
+- Trabajar una página nueva del proyecto sin tocar lo que ya está publicado
 - Crear, cambiar y borrar ramas sin perder trabajo
 - Fusionar una rama terminada en la principal
-- Leer las marcas de un conflicto y decidir con qué texto se queda el manual
+- Leer las marcas de un conflicto y decidir con qué texto se queda el proyecto
 - Poner a commits y ramas nombres que el equipo entienda meses después
 
 ## Teoría

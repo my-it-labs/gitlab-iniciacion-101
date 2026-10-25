@@ -2,7 +2,7 @@
 
 [← Página anterior](02-lab-conflicto.md) · [Siguiente página →](../M04-trabajo-colaborativo/README.md)
 
-El historial del manual del equipo es la respuesta a preguntas como «¿cuándo cambió el horario y por qué?» o «¿qué rama está tocando las normas de vacaciones?». Esa respuesta solo sirve si los mensajes de commit y los nombres de rama dicen algo. Esta página reúne las convenciones que usa el curso y que encontrarás en la mayoría de equipos.
+El historial del proyecto es la respuesta a preguntas como «¿cuándo cambió el horario y por qué?» o «¿qué rama está tocando las normas de vacaciones?». Esa respuesta solo sirve si los mensajes de commit y los nombres de rama dicen algo. Esta página reúne las convenciones que usa el curso y que encontrarás en la mayoría de equipos.
 
 ## Mensajes de commit
 
@@ -12,7 +12,7 @@ Un buen mensaje permite entender el cambio sin abrir el diff. Tres reglas cubren
 
 La primera línea (el **asunto**) describe lo que hace el commit si se aplica: «Añade…», «Corrige…», «Enlaza…». Es la misma forma que usa Git en sus propios mensajes (`Merge branch 'pagina-faq'`). Va con mayúscula inicial, sin punto final y corta: que quepa entera en `git log --oneline` y en la lista de **Code → Commits** de GitLab.
 
-El historial de partida del manual ya sigue esta regla:
+El historial de partida del proyecto ya sigue esta regla:
 
 ```text
 a915cab Añade normas de trabajo y scripts de validación

@@ -2,7 +2,7 @@
 
 [← Página anterior](01-lab-identidad-y-acceso.md) · [Siguiente página →](../M02-operaciones-basicas/README.md)
 
-El manual del equipo necesita un sitio común donde todos vean la misma versión y su historial. En este lab creas el proyecto `manual-equipo` en la instancia de GitLab del curso, recorres las secciones que usarás en el resto del curso y haces tu primer commit sin salir del navegador.
+El proyecto necesita un sitio común donde todos vean la misma versión y su historial. En este lab Ana crea el proyecto `manual-equipo` en GitLab, recorre las secciones que se usan en el resto del curso y hace su primer commit sin salir del navegador. Todo el lab se hace en el navegador, con la sesión de Ana.
 
 ### Objetivo
 
@@ -10,113 +10,131 @@ El proyecto `ana/manual-equipo` creado con su `README.md`, editado desde la web,
 
 ### Punto de partida
 
-- Instancia de GitLab del curso: `https://gitlab.ejemplo.com` (el formador te da la URL real).
-- Credenciales: tu usuario (en las páginas, `ana`) y tu contraseña.
-- Estado: no hace falta nada más; no se usa la terminal. Si ya tienes un proyecto llamado `manual-equipo`, usa `manual-equipo-web` en el paso 3 y en el resto de rutas.
+- El entorno de prácticas levantado ([El entorno de prácticas](../../infra/README.md)): GitLab en `http://localhost:8080`.
+- Cuenta de Ana: usuario `ana`, contraseña `Formacion-2026!`.
+- No hace falta nada de páginas anteriores ni se usa la terminal. Si ya tienes un proyecto llamado `manual-equipo`, usa `manual-equipo-web` en el paso 3 y en el resto de rutas.
 
 ### En qué consiste
 
-Creas un proyecto en blanco con README, visitas sus secciones principales para saber qué hay en cada una y cambias el README con un commit desde la interfaz web. Clonar y trabajar desde tu equipo queda para el siguiente módulo.
+Con la sesión de Ana creas un proyecto en blanco con README, visitas sus secciones principales para saber qué hay en cada una y cambias el README con un commit desde la interfaz web. Al final miras la dirección con la que el ordenador de Ana lo clonará por SSH; clonarlo y trabajar desde su ordenador queda para el siguiente módulo.
 
-### 1 — Entra en GitLab
+### 1 — Entra en GitLab como Ana
 
-**Acción:** abre `https://gitlab.ejemplo.com`, escribe tu usuario y tu contraseña y pulsa **Sign in**.
+**Acción** (🌐 GitLab, sesión de Ana): abre `http://localhost:8080`, escribe `ana` y `Formacion-2026!` y pulsa **Sign in**. Si ya estás dentro con otra cuenta, sal antes desde el avatar (**Sign out**).
 
-**Por qué:** el proyecto se crea en tu espacio personal (`ana`), que solo existe con tu sesión iniciada.
+**Por qué:** el proyecto se crea en el espacio personal de quien tiene la sesión iniciada. Con la sesión de Ana, el proyecto será `ana/manual-equipo`.
 
-**Resultado esperado:** la página de inicio con la barra lateral izquierda y tu avatar.
+**Resultado esperado:** la página de inicio con la barra lateral izquierda y el avatar de Ana.
+
+> 📷 **Captura pendiente** · `M01-02-01-inicio.png` — GitLab, sesión de Ana: página de inicio con el avatar de Ana.
 
 ### 2 — Empieza un proyecto nuevo
 
-**Acción:**
+**Acción** (🌐 GitLab, sesión de Ana):
 1. En la parte superior de la barra lateral, pulsa **+** y elige **New project/repository**.
 2. Pulsa **Create blank project**.
 
-**Por qué:** el manual se empieza desde cero; las otras opciones (plantilla, importar) traen contenido que no es el del equipo.
+**Por qué:** el proyecto se empieza desde cero; las otras opciones (plantilla, importar) traen contenido que no es el del equipo.
 
 **Resultado esperado:** el formulario **Create blank project**.
 
 ### 3 — Rellena los datos del proyecto
 
-**Acción:**
+**Acción** (🌐 GitLab, sesión de Ana):
 1. En **Project name**, escribe `manual-equipo`.
-2. En **Project URL**, comprueba que el espacio es tu usuario (`ana`) y que **Project slug** es `manual-equipo`.
+2. En **Project URL**, comprueba que el espacio es `ana` y que **Project slug** es `manual-equipo`.
 3. En **Visibility Level**, elige **Private**.
 4. En **Project Configuration**, deja marcada **Initialize repository with a README**.
 
-**Por qué:** la URL del proyecto será `https://gitlab.ejemplo.com/ana/manual-equipo`, la que usarás para clonarlo. Privado: solo tú y los miembros que añadas lo veis. El README inicial deja el repositorio con un primer commit y la rama `main`, en lugar de vacío.
+**Por qué:** la URL del proyecto será `http://localhost:8080/ana/manual-equipo`. Privado: solo Ana y los miembros que añada lo ven; Luis, de momento, no. El README inicial deja el repositorio con un primer commit y la rama `main`, en lugar de vacío.
 
 **Resultado esperado:** el formulario sin avisos en rojo bajo **Project name** ni **Project slug**.
 
+> 📷 **Captura pendiente** · `M01-02-03-formulario.png` — GitLab, sesión de Ana: formulario **Create blank project** relleno.
+
 ### 4 — Crea el proyecto
 
-**Acción:** pulsa **Create project**.
+**Acción** (🌐 GitLab, sesión de Ana): pulsa **Create project**.
 
 **Por qué:** a partir de aquí el repositorio existe en el servidor y tiene historial.
 
 **Resultado esperado:** la página del proyecto `manual-equipo` con un aviso de proyecto creado, la rama `main`, un commit y la lista de archivos con `README.md`. Debajo, el contenido del README renderizado.
 
+> 📷 **Captura pendiente** · `M01-02-04-proyecto-creado.png` — GitLab, sesión de Ana: página del proyecto recién creado.
+
 ### 5 — Code → Repository
 
-**Acción:** en la barra lateral, pulsa **Code** → **Repository**.
+**Acción** (🌐 GitLab, sesión de Ana): en la barra lateral, pulsa **Code** → **Repository**.
 
-**Por qué:** es la vista de los archivos del manual en una rama. Aquí verás `docs/` y las páginas cuando las subas.
+**Por qué:** es la vista de los archivos del proyecto en una rama. Aquí verás `docs/` y las páginas cuando las subas.
 
-**Resultado esperado:** el selector de rama con `main`, la última línea de commit (`Initial commit`, de tu usuario) y la tabla de archivos con `README.md`.
+**Resultado esperado:** el selector de rama con `main`, la última línea de commit (`Initial commit`, de Ana) y la tabla de archivos con `README.md`.
+
+> 📷 **Captura pendiente** · `M01-02-05-repository.png` — GitLab, sesión de Ana: **Code → Repository**.
 
 ### 6 — Plan → Issues
 
-**Acción:** pulsa **Plan** → **Issues**.
+**Acción** (🌐 GitLab, sesión de Ana): pulsa **Plan** → **Issues**.
 
-**Por qué:** las tareas del manual («falta la página de vacaciones», «el horario está desactualizado») se registran como issues. Se usan en el M04.
+**Por qué:** las tareas del proyecto («falta la página de vacaciones», «el horario está desactualizado») se registran como issues. Se usan en el M04.
 
 **Resultado esperado:** la lista vacía con un botón **New issue**.
 
+> 📷 **Captura pendiente** · `M01-02-06-issues.png` — GitLab, sesión de Ana: **Plan → Issues** vacía.
+
 ### 7 — Code → Merge requests
 
-**Acción:** pulsa **Code** → **Merge requests**.
+**Acción** (🌐 GitLab, sesión de Ana): pulsa **Code** → **Merge requests**.
 
-**Por qué:** una merge request es la propuesta de integrar los cambios de una rama en `main`, con revisión. Es como entra cada cambio en el manual del equipo.
+**Por qué:** una merge request es la propuesta de integrar los cambios de una rama en `main`, con revisión. Es como entra cada cambio en el proyecto.
 
 **Resultado esperado:** la lista vacía, sin merge requests abiertas.
 
+> 📷 **Captura pendiente** · `M01-02-07-merge-requests.png` — GitLab, sesión de Ana: **Code → Merge requests** vacía.
+
 ### 8 — Build → Pipelines
 
-**Acción:** pulsa **Build** → **Pipelines**.
+**Acción** (🌐 GitLab, sesión de Ana): pulsa **Build** → **Pipelines**.
 
-**Por qué:** cuando el proyecto tenga un `.gitlab-ci.yml`, cada push lanzará un pipeline que comprueba las páginas del manual. Se ve en el M05.
+**Por qué:** cuando el proyecto tenga un `.gitlab-ci.yml`, cada push lanzará un pipeline que comprueba las páginas del proyecto. Se ve en el M05.
 
 **Resultado esperado:** una página sin pipelines que invita a configurar CI/CD: el proyecto aún no tiene `.gitlab-ci.yml`.
 
+> 📷 **Captura pendiente** · `M01-02-08-pipelines.png` — GitLab, sesión de Ana: **Build → Pipelines** sin pipelines.
+
 ### 9 — Manage → Members
 
-**Acción:** pulsa **Manage** → **Members**.
+**Acción** (🌐 GitLab, sesión de Ana): pulsa **Manage** → **Members**.
 
-**Por qué:** aquí se decide quién más trabaja en el manual y con qué rol. En el M04 añadirás a tu pareja.
+**Por qué:** aquí se decide quién más trabaja en el proyecto y con qué rol. En el M04, Ana añade aquí a Luis.
 
-**Resultado esperado:** la tabla de miembros con una sola fila: tu usuario, con el rol **Owner**.
+**Resultado esperado:** la tabla de miembros con una sola fila: Ana (`@ana`), con el rol **Owner**.
+
+> 📷 **Captura pendiente** · `M01-02-09-members.png` — GitLab, sesión de Ana: **Manage → Members** con Ana como Owner.
 
 ### 10 — Settings
 
-**Acción:** pulsa **Settings** → **General** y despliega **Visibility, project features, permissions** con **Expand**. Después, abre **Settings** → **Repository** y despliega **Protected branches**.
+**Acción** (🌐 GitLab, sesión de Ana): pulsa **Settings** → **General** y despliega **Visibility, project features, permissions** con **Expand**. Después, abre **Settings** → **Repository** y despliega **Protected branches**.
 
 **Por qué:** en **General** está la visibilidad que elegiste en el paso 3; en **Repository** → **Protected branches**, las reglas de la rama `main`, que en el M04 se cierran para que solo se integre por merge request.
 
 **Resultado esperado:** **Project visibility** en **Private**, y en **Protected branches** una fila para `main`.
 
+> 📷 **Captura pendiente** · `M01-02-10-protected-branches.png` — GitLab, sesión de Ana: **Settings → Repository → Protected branches** con `main`.
+
 ### 11 — Abre el README para editarlo
 
-**Acción:**
+**Acción** (🌐 GitLab, sesión de Ana):
 1. Vuelve a **Code** → **Repository** y pulsa `README.md`.
 2. Pulsa **Edit** y elige **Edit single file**.
 
-**Por qué:** el README que genera GitLab es genérico; el del manual tiene que decir qué es.
+**Por qué:** el README que genera GitLab es genérico; el del proyecto tiene que decir qué es.
 
 **Resultado esperado:** un editor con el contenido actual del README y, debajo, los campos **Commit message** y **Target branch**.
 
-### 12 — Escribe el README del manual
+### 12 — Escribe el README del proyecto
 
-**Acción:** borra todo el contenido y escribe:
+**Acción** (🌐 GitLab, sesión de Ana): borra todo el contenido y escribe:
 
 ```markdown
 # Manual del equipo
@@ -124,13 +142,15 @@ Creas un proyecto en blanco con README, visitas sus secciones principales para s
 Todo lo que necesita saber una persona que se incorpora al equipo.
 ```
 
-**Por qué:** es la cabecera que tendrá el manual completo; el título en la primera línea es lo que el pipeline del M05 exige a cada página.
+**Por qué:** es la cabecera que tendrá el documento completo; el título en la primera línea es lo que el pipeline del M05 exige a cada página.
 
 **Resultado esperado:** el editor solo con esas tres líneas. La pestaña **Preview** muestra el título grande y la frase debajo.
 
+> 📷 **Captura pendiente** · `M01-02-12-editor-readme.png` — GitLab, sesión de Ana: editor del README con **Preview**.
+
 ### 13 — Haz el commit desde la web
 
-**Acción:**
+**Acción** (🌐 GitLab, sesión de Ana):
 1. En **Commit message**, sustituye el texto propuesto por `Describe el manual del equipo`.
 2. Deja **Target branch** en `main`.
 3. Pulsa **Commit changes**.
@@ -139,23 +159,37 @@ Todo lo que necesita saber una persona que se incorpora al equipo.
 
 **Resultado esperado:** la página de `README.md` con el contenido nuevo y un aviso de que los cambios se han guardado. Encima del archivo, la línea del último commit: `Describe el manual del equipo`.
 
+> 📷 **Captura pendiente** · `M01-02-13-commit-web.png` — GitLab, sesión de Ana: README tras **Commit changes**.
+
 ### 14 — Code → Commits
 
-**Acción:** pulsa **Code** → **Commits**.
+**Acción** (🌐 GitLab, sesión de Ana): pulsa **Code** → **Commits**.
 
-**Por qué:** es el historial del manual: lo que la carpeta compartida no tenía.
+**Por qué:** es el historial del proyecto: lo que la carpeta compartida no tenía.
 
-**Resultado esperado:** dos commits en `main`, del más reciente al más antiguo: `Describe el manual del equipo` e `Initial commit`, los dos con tu nombre. Al pulsar el primero se ve su diff: en rojo las líneas del README genérico y en verde las tres nuevas.
+**Resultado esperado:** dos commits en `main`, del más reciente al más antiguo: `Describe el manual del equipo` e `Initial commit`, los dos de Ana. Al pulsar el primero se ve su diff: en rojo las líneas del README genérico y en verde las tres nuevas.
+
+> 📷 **Captura pendiente** · `M01-02-14-commits.png` — GitLab, sesión de Ana: **Code → Commits** con dos commits.
+
+### 15 — La dirección para clonar por SSH
+
+**Acción** (🌐 GitLab, sesión de Ana): vuelve a la página del proyecto y pulsa el botón **Code**.
+
+**Por qué:** es la dirección con la que el ordenador de Ana clonará el proyecto en el M02. En el curso se usa **Clone with SSH**, que funciona con la clave que Ana registró en el [lab de identidad y acceso](01-lab-identidad-y-acceso.md): `git@gitlab` es GitLab visto desde la red de los ordenadores del equipo, y `ana/manual-equipo` es la ruta del proyecto.
+
+**Resultado esperado:** un desplegable con **Clone with SSH**: `git@gitlab:ana/manual-equipo.git`, y debajo **Clone with HTTP**.
+
+> 📷 **Captura pendiente** · `M01-02-15-clone-ssh.png` — GitLab, sesión de Ana: desplegable **Code** con **Clone with SSH**.
 
 ## Comprueba tu entendimiento
 
 **El historial cuenta lo que hiciste**
 Abre **Code** → **Commits** en `manual-equipo`.
-→ Dos commits, el último `Describe el manual del equipo`, con tu usuario como autor.
+→ Dos commits, el último `Describe el manual del equipo`, con Ana como autora.
 
-**El proyecto es tuyo y privado**
-Abre **Manage** → **Members**.
-→ Solo tu usuario, con el rol **Owner**.
+**El proyecto es de Ana y privado**
+Abre **Manage** → **Members**. Después, en una ventana privada, entra como `luis` y abre `http://localhost:8080/ana/manual-equipo`.
+→ Solo Ana, con el rol **Owner**. Luis ve una página de error 404: para él, el proyecto no existe hasta que Ana lo añada como miembro (M04).
 
 **Cada sección, su función**
 Sin abrirlas, di dónde mirarías si un compañero propone un cambio en el horario, si alguien avisa de un enlace roto y si quieres saber si las páginas pasan la validación. Después compruébalo en la barra lateral.
@@ -178,8 +212,8 @@ En **Code** → **Repository**, pulsa **+** (junto al nombre del proyecto) → *
 
 | Síntoma | Causa probable | Cómo arreglarlo |
 |---------|----------------|-----------------|
-| Al crear el proyecto, aviso en rojo de que el nombre o la ruta ya están en uso | Ya tienes un proyecto `manual-equipo` en tu espacio | Usa `manual-equipo-web` como nombre, o abre el que ya tienes |
+| Al crear el proyecto, aviso en rojo de que el nombre o la ruta ya están en uso | Ana ya tiene un proyecto `manual-equipo` en su espacio | Usa `manual-equipo-web` como nombre, o abre el que ya tienes |
 | La página del proyecto dice que el repositorio está vacío y no hay `README.md` | Se desmarcó **Initialize repository with a README** | Añade el archivo desde la web (**+** → **New file**, nombre `README.md`) o borra el proyecto y créalo otra vez |
 | Tras **Commit changes** se abre un formulario de merge request y `main` no cambia | Se cambió **Target branch** o se marcó la opción de empezar una merge request con los cambios | Cierra el formulario sin crearla; repite el paso 13 con **Target branch** `main` |
-| No aparece **New project/repository** o GitLab no deja crear el proyecto | Tu cuenta no tiene permiso para crear proyectos en la instancia | Pide al formador que revise tu cuenta |
-| **Settings** no aparece en la barra lateral | Estás en un proyecto en el que no eres Owner o Maintainer | Comprueba que estás en `ana/manual-equipo` (tu usuario en la ruta) |
+| No aparece **New project/repository** o GitLab no deja crear el proyecto | No estás con la sesión de Ana, o la cuenta no se creó bien | Comprueba el avatar; si la cuenta `ana` no existe, ejecuta `infra/bootstrap.sh` en el terminal del Codespace |
+| **Settings** no aparece en la barra lateral | Estás con la sesión de Luis, o en un proyecto que no es de Ana | Comprueba el avatar y que la ruta sea `ana/manual-equipo` |

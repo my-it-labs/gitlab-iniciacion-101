@@ -2,13 +2,19 @@
 
 [← Página anterior](README.md) · [Siguiente página →](01-lab-primer-pipeline.md)
 
-El manual del equipo ya se mantiene con ramas y merge requests, pero nadie comprueba si una página ha perdido el título o si un enlace apunta a una página que no existe. Esta demostración recorre el pipeline de `manual-equipo`: el archivo que lo describe, cómo arranca solo tras un push y dónde se lee lo que ha pasado.
+El proyecto ya se mantiene con ramas y merge requests, pero nadie comprueba si una página ha perdido el título o si un enlace apunta a una página que no existe. Esta demostración recorre el pipeline de `manual-equipo`: el archivo que lo describe, cómo arranca solo tras un push y dónde se lee lo que ha pasado.
 
 ## Punto de partida
 
-- URL: `https://gitlab.ejemplo.com/ana/manual-m05-demo` (la URL real de la instancia la da el formador).
-- Identidad: usuaria `ana`, con su token de acceso personal como contraseña al hacer push.
-- Estado: proyecto creado desde el repositorio del curso con `scripts/partida.sh manual-m05-demo --con-ci`. Tiene el manual, los scripts `scripts/validar.sh` y `scripts/construir.sh`, y el `.gitlab-ci.yml` en el 4.º commit, «Añade pipeline de validación». Copia local en `~/trabajo/manual-m05-demo`.
+- El entorno de prácticas levantado ([El entorno de prácticas](../../infra/README.md)): GitLab en `http://localhost:8080`, con su runner.
+- Proyecto `ana/manual-m05-demo`, creado con:
+
+  ```bash
+  # 🖥️ Terminal del Codespace
+  scripts/partida.sh ana manual-m05-demo --con-ci
+  ```
+
+  Tiene el proyecto, los scripts `scripts/validar.sh` y `scripts/construir.sh`, y el `.gitlab-ci.yml` en el 4.º commit, «Añade pipeline de validación». Copia en `~/trabajo/manual-m05-demo` del ordenador de Ana, que hace los push por SSH.
 
 ## Recorrido
 
@@ -49,15 +55,17 @@ construir-manual:
 Cualquier clave de primer nivel que no sea una palabra reservada (`stages`, `default`, `variables`…) es un job, y su nombre es el que aparecerá en GitLab. Los comandos de `script` son los mismos que se pueden ejecutar en el propio equipo: el pipeline no hace nada que no haga `sh scripts/validar.sh` en la terminal.
 
 > [!NOTE]
-> **Integración continua** es esto: cada cambio publicado se comprueba solo, con las mismas reglas para todo el equipo. La **entrega continua** sería el paso siguiente: dejar listo lo que se publica. Aquí llega hasta generar el manual completo (`public/manual-completo.md`); desplegarlo no entra en el curso.
+> **Integración continua** es esto: cada cambio publicado se comprueba solo, con las mismas reglas para todo el equipo. La **entrega continua** sería el paso siguiente: dejar listo lo que se publica. Aquí llega hasta generar el documento completo (`public/manual-completo.md`); desplegarlo no entra en el curso.
 
 ### Del push al pipeline
 
-3. En la copia local se cambia una línea de `docs/normas-de-trabajo.md` y se publica con `git commit -am "Ajusta la hora de la reunión de equipo"` y `git push`. El push no menciona el pipeline: Git solo sube los commits. Es GitLab quien, al recibirlos, ve el `.gitlab-ci.yml` y crea el pipeline.
+3. En el ordenador de Ana (💻), dentro de `~/trabajo/manual-m05-demo`, se cambia una línea de `docs/normas-de-trabajo.md` y se publica con `git commit -am "Ajusta la hora de la reunión de equipo"` y `git push`. El push no menciona el pipeline: Git solo sube los commits. Es GitLab quien, al recibirlos, ve el `.gitlab-ci.yml` y crea el pipeline.
 
-4. En la barra lateral del proyecto, **Build → Pipelines** muestra la lista de ejecuciones. La más reciente aparece arriba, con su estado (**Running** mientras dura, **Passed** al acabar bien), el número de pipeline, la rama `main`, el commit que lo ha lanzado y una fila de iconos, uno por stage.
+4. En GitLab (🌐 sesión de Ana), en la barra lateral del proyecto, **Build → Pipelines** muestra la lista de ejecuciones. La más reciente aparece arriba, con su estado (**Running** mientras dura, **Passed** al acabar bien), el número de pipeline, la rama `main`, el commit que lo ha lanzado y una fila de iconos, uno por stage.
 
-5. Al abrir el pipeline (clic en su estado o en su número), la pestaña de grafo dibuja una columna por stage: `validar` con el job `validar-paginas` y `construir` con `construir-manual`. La columna `construir` no empieza hasta que todos los jobs de `validar` han terminado bien. Si la validación fallara, `construir-manual` quedaría en **Skipped**: no tiene sentido generar un manual con páginas rotas.
+   > 📷 **Captura pendiente** · `M05-00-pipelines.png` — GitLab, sesión de Ana: **Build → Pipelines** con el pipeline en **Passed**.
+
+5. Al abrir el pipeline (clic en su estado o en su número), la pestaña de grafo dibuja una columna por stage: `validar` con el job `validar-paginas` y `construir` con `construir-manual`. La columna `construir` no empieza hasta que todos los jobs de `validar` han terminado bien. Si la validación fallara, `construir-manual` quedaría en **Skipped**: no tiene sentido generar un proyecto con páginas rotas.
 
 ### El runner y el log del job
 
@@ -71,7 +79,7 @@ Preparing the "docker" executor
 Using Docker executor with image alpine:3.20 ...
 ```
 
-El **runner** es el proceso que recoge el job de la cola de GitLab y lo ejecuta. Este usa el *executor* Docker: arranca un contenedor nuevo con la imagen `alpine:3.20` que pide el job, y al terminar lo descarta. El runner lo aporta la instancia del curso; GitLab solo coordina.
+El **runner** es el proceso que recoge el job de la cola de GitLab y lo ejecuta. Este usa el *executor* Docker: arranca un contenedor nuevo con la imagen `alpine:3.20` que pide el job, y al terminar lo descarta. En el curso, el runner es el contenedor `runner` del entorno de prácticas, en la misma red que GitLab; GitLab solo coordina.
 
 7. Siguen unas líneas de preparación (descarga de imágenes, clonado del repositorio). La más útil es la que indica qué commit se ha comprobado:
 

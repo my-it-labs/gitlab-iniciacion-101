@@ -6,11 +6,15 @@
   },
   "hostRequirements": { "cpus": 4, "memory": "16gb" },
   "forwardPorts": [8080],
-  "portsAttributes": { "8080": { "label": "GitLab (repaso)", "onAutoForward": "notify" } },
+  "portsAttributes": { "8080": { "label": "GitLab", "onAutoForward": "notify" } },
   "customizations": {
     "vscode": {
       "extensions": ["mhutchie.git-graph"],
-      "settings": { "terminal.integrated.defaultProfile.linux": "bash" }
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "git.repositoryScanMaxDepth": 4,
+        "git.openRepositoryInParentFolders": "always"
+      }
     }
   }
 }

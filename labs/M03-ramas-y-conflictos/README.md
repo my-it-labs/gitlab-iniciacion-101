@@ -38,6 +38,7 @@ Hay **conflicto** cuando las dos ramas cambian las mismas líneas del mismo arch
 
 ## Páginas
 
+<!-- gen:paginas -->
 | # | Página | Qué hay |
 |---|--------|---------|
 | 00 | [Ramas como punteros](00-ramas-como-punteros.md) | Demostración: una rama, dos commits y su fusión vistos en el grafo |
@@ -46,3 +47,4 @@ Hay **conflicto** cuando las dos ramas cambian las mismas líneas del mismo arch
 | 03 | [Buenas prácticas de commits y ramas](03-buenas-practicas.md) | Mensajes de commit y nombres de rama que se entienden después |
 
 → Empieza por **[00 — Ramas como punteros](00-ramas-como-punteros.md)**.
+<!-- /gen:paginas -->

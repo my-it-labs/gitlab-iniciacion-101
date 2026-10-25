@@ -1,0 +1,16 @@
+{
+  "name": "GitLab — Iniciación",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "hostRequirements": { "cpus": 4, "memory": "16gb" },
+  "forwardPorts": [8080],
+  "portsAttributes": { "8080": { "label": "GitLab (repaso)", "onAutoForward": "notify" } },
+  "customizations": {
+    "vscode": {
+      "extensions": ["mhutchie.git-graph"],
+      "settings": { "terminal.integrated.defaultProfile.linux": "bash" }
+    }
+  }
+}

@@ -36,6 +36,7 @@ Un cambio pasa por tres áreas antes de quedar guardado:
 
 ## Páginas
 
+<!-- gen:paginas -->
 | # | Página | Qué hay |
 |---|--------|---------|
 | 00 | [Control de versiones y las tres áreas](00-control-de-versiones.md) | Demostración: un cambio en el manual recorre las tres áreas hasta el commit |
@@ -43,3 +44,4 @@ Un cambio pasa por tres áreas antes de quedar guardado:
 | 02 | [Lab — Primer proyecto](02-lab-primer-proyecto.md) | Creas `manual-equipo`, recorres sus secciones y añades el README desde la web |
 
 → Empieza por **[00 — Control de versiones y las tres áreas](00-control-de-versiones.md)**.
+<!-- /gen:paginas -->

@@ -26,9 +26,9 @@ Una página sin título o un enlace roto no deberían llegar al manual. Aquí a�
 | **Artefacto** | Archivos que guarda un job al terminar (`artifacts`) y que puedes descargar |
 
 ```yaml
-stages: [validar, publicar]
+stages: [validar, construir]
 
-comprobar-paginas:
+validar-paginas:
   stage: validar
   image: alpine:3.20
   script:
@@ -40,6 +40,7 @@ comprobar-paginas:
 
 ## Páginas
 
+<!-- gen:paginas -->
 | # | Página | Qué hay |
 |---|--------|---------|
 | 00 | [Pipelines, stages y jobs](00-pipelines-stages-jobs.md) | Demostración: un `.gitlab-ci.yml` mínimo, del push al log del job |
@@ -48,3 +49,4 @@ comprobar-paginas:
 | 03 | [Lab — Fallo controlado](03-lab-fallo-controlado.md) | Rompes el pipeline con una página sin título, lo diagnosticas por el log y lo corriges |
 
 → Empieza por **[00 — Pipelines, stages y jobs](00-pipelines-stages-jobs.md)**.
+<!-- /gen:paginas -->

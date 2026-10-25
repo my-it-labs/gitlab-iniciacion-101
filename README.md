@@ -29,6 +29,7 @@ Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una 
 
 ## Temario
 
+<!-- gen:temario -->
 - **[M01 — Introducción a Git y GitLab](labs/M01-introduccion-git-gitlab/README.md)**
   - [Control de versiones: utilidad y conceptos fundamentales](labs/M01-introduccion-git-gitlab/00-control-de-versiones.md)
   - [Diferencias entre Git y GitLab](labs/M01-introduccion-git-gitlab/00-control-de-versiones.md)
@@ -69,15 +70,23 @@ Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una 
   - [Organización básica del repositorio y documentación](labs/M06-flujo-completo/00-flujo-completo.md)
   - [Recomendaciones para colaborar y mantener un historial claro](labs/M06-flujo-completo/00-flujo-completo.md)
   - [Errores habituales y cómo evitarlos](labs/M06-flujo-completo/00-flujo-completo.md)
+<!-- /gen:temario -->
 
 ## Antes de empezar
 
 | Requisito | Dónde |
 |-----------|-------|
-| Navegador, Git y Visual Studio Code | Se comprueba en el M01 |
+| Navegador, Git y Visual Studio Code (en Windows, con Git Bash) | Se comprueba en el M01 |
 | Cuenta en la instancia de GitLab del curso, con permiso para crear proyectos | Te la da el formador |
+| Token de acceso personal de GitLab | Se crea en el M01 |
 | Runner disponible para CI/CD | Lo aporta la instancia del curso; se usa en el M05 |
+
+Cada laboratorio empieza desde cero con su propio proyecto. `scripts/partida.sh` lo crea en GitLab con el manual del equipo y lo clona en `~/trabajo/`. Cada página indica el comando exacto.
+
+¿Quieres repasar por tu cuenta, sin la instancia del curso? [infra/README.md](infra/README.md) explica cómo levantar un GitLab propio con su runner.
 
 ## Empieza aquí
 
+<!-- gen:empieza -->
 → **[M01 — Control de versiones y las tres áreas](labs/M01-introduccion-git-gitlab/00-control-de-versiones.md)**
+<!-- /gen:empieza -->

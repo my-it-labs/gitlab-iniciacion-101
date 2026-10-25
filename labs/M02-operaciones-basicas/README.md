@@ -37,6 +37,7 @@ Un archivo puede estar en cuatro estados: **sin seguimiento** (Git aún no lo co
 
 ## Páginas
 
+<!-- gen:paginas -->
 | # | Página | Qué hay |
 |---|--------|---------|
 | 00 | [El ciclo de un cambio](00-ciclo-de-un-cambio.md) | Demostración: de editar una página en VS Code a verla publicada en GitLab |
@@ -46,3 +47,4 @@ Un archivo puede estar en cuatro estados: **sin seguimiento** (Git aún no lo co
 | 04 | [Lab — .gitignore](04-lab-gitignore.md) | Excluyes del repositorio los archivos locales que no son del manual |
 
 → Empieza por **[00 — El ciclo de un cambio](00-ciclo-de-un-cambio.md)**.
+<!-- /gen:paginas -->

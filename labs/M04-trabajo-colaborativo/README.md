@@ -36,6 +36,7 @@ Si la descripción de la MR incluye `Closes #<número>`, la issue se cierra sola
 
 ## Páginas
 
+<!-- gen:paginas -->
 | # | Página | Qué hay |
 |---|--------|---------|
 | 00 | [Roles, issues y merge requests](00-roles-issues-y-mr.md) | Demostración: de la issue a la MR fusionada, con una sugerencia de cambio |
@@ -44,3 +45,4 @@ Si la descripción de la MR incluye `Closes #<número>`, la issue se cierra sola
 | 03 | [Lab — Revisión](03-lab-revision.md) | Revisas la MR de tu pareja, pides un cambio y completas la fusión |
 
 → Empieza por **[00 — Roles, issues y merge requests](00-roles-issues-y-mr.md)**.
+<!-- /gen:paginas -->

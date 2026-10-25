@@ -1,0 +1,19 @@
+stages:
+  - validar
+  - construir
+
+validar-paginas:
+  stage: validar
+  image: alpine:3.20
+  script:
+    - sh scripts/validar.sh
+
+construir-manual:
+  stage: construir
+  image: alpine:3.20
+  script:
+    - sh scripts/construir.sh
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 week

@@ -7,9 +7,10 @@ FROM ubuntu:24.04
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      git openssh-client less nano ca-certificates \
+      git openssh-client less nano acl ca-certificates \
  && rm -rf /var/lib/apt/lists/* \
- && userdel -r ubuntu 2>/dev/null || true
+ && userdel -r ubuntu 2>/dev/null || true \
+ && echo 'umask 022' >> /etc/bash.bashrc
 
 ARG USUARIO
 ARG UID=1000
@@ -19,5 +20,8 @@ RUN useradd -m -u "$UID" -s /bin/bash "$USUARIO"
 ENV LANG=C.UTF-8 EDITOR=nano
 USER $USUARIO
 WORKDIR /home/$USUARIO
-# La carpeta personal llega vacía desde el workspace: se completa con los archivos de /etc/skel.
-CMD ["sh", "-c", "cp -rn /etc/skel/. \"$HOME\"/ && exec sleep infinity"]
+# Al arrancar:
+# - En Codespaces, /workspaces tiene ACL por defecto que dejan todo lo nuevo abierto a cualquiera
+#   (y SSH rechaza una clave privada así): se quitan de la carpeta personal.
+# - La carpeta personal llega vacía desde el workspace: se completa con los archivos de /etc/skel.
+CMD ["sh", "-c", "setfacl -R -b -k \"$HOME\" 2>/dev/null; chmod 755 \"$HOME\"; cp -rn /etc/skel/. \"$HOME\"/ && exec sleep infinity"]

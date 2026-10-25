@@ -80,7 +80,7 @@ branch 'nueva-pagina-faq' set up to track 'origin/nueva-pagina-faq'.
 
 En GitLab, con la sesión de Ana, **Code → Branches** del proyecto lista dos ramas: `main`, con las etiquetas **default** y **protected**, y `nueva-pagina-faq`, con su último commit «Enlaza las preguntas frecuentes desde el índice». **Code → Repository graph** dibuja el mismo grafo que la terminal: tres commits comunes y, encima, los dos de la rama, cada nombre de rama junto al commit al que apunta.
 
-> 📷 **Captura pendiente** · `M03-00-repository-graph.png` — GitLab, sesión de Ana: **Code → Repository graph** con la rama `nueva-pagina-faq`.
+![Code → Repository graph con la rama nueva-pagina-faq](../img/M03-00-repository-graph.png)
 
 ### 5. Fusión *fast-forward*
 

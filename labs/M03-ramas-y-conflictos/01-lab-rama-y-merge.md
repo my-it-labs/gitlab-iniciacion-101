@@ -290,7 +290,7 @@ To gitlab:ana/manual-m03-ramas.git
 
 En GitLab (sesión de Ana), **Code → Repository graph** dibuja la misma bifurcación y unión que la terminal, y **Code → Repository** muestra `docs/preguntas-frecuentes.md`. En **Code → Branches** solo está `main`: la rama `pagina-faq` nunca se subió.
 
-> 📷 **Captura pendiente** · `M03-01-repository-graph.png` — GitLab, sesión de Ana: **Code → Repository graph** con la bifurcación y el commit de merge.
+![Code → Repository graph con la bifurcación y el commit de merge](../img/M03-01-repository-graph.png)
 
 ## Comprueba tu entendimiento
 

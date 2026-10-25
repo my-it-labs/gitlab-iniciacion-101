@@ -207,7 +207,7 @@ La huella (`SHA256:…`) y el dibujo serán otros en tu ordenador: cada clave es
 
 **Resultado esperado:** una sola línea que empieza por `ssh-ed25519` y termina en `ana@pc-ana`.
 
-> 📷 **Captura pendiente** · `M01-01-clave-publica-vscode.png` — VS Code: `home-ana/.ssh/` con los dos archivos y `id_ed25519.pub` abierto.
+![Home-ana/.ssh/ con los dos archivos y id_ed25519.pub abierto](../img/M01-01-clave-publica-vscode.png)
 
 ### 11 — Entra en GitLab como Ana
 
@@ -221,7 +221,7 @@ La huella (`SHA256:…`) y el dibujo serán otros en tu ordenador: cada clave es
 
 **Resultado esperado:** la página de inicio de GitLab con la barra lateral izquierda y el avatar de Ana arriba.
 
-> 📷 **Captura pendiente** · `M01-01-inicio-ana.png` — GitLab, sesión de Ana: página de inicio con el avatar.
+![Página de inicio con el avatar](../img/M01-01-inicio-ana.png)
 
 ### 12 — Registra la clave de Ana
 
@@ -237,7 +237,7 @@ La huella (`SHA256:…`) y el dibujo serán otros en tu ordenador: cada clave es
 
 **Resultado esperado:** la página de la clave con su título `ana@pc-ana` y su huella (*fingerprint*). En **SSH keys** aparece una fila con ese título.
 
-> 📷 **Captura pendiente** · `M01-01-ssh-key-ana.png` — GitLab, sesión de Ana: **SSH keys** con la clave `ana@pc-ana`.
+![SSH keys con la clave ana@pc-ana](../img/M01-01-ssh-key-ana.png)
 
 ### 13 — Comprueba que GitLab reconoce a Ana
 
@@ -335,7 +335,7 @@ Pulsa **Enter** en las tres preguntas. Después, en VS Code (📝), abre `home-l
 
 **Resultado esperado:** en **SSH keys** de Luis, una fila con el título `luis@pc-luis`.
 
-> 📷 **Captura pendiente** · `M01-01-ssh-key-luis.png` — GitLab, sesión de Luis (ventana privada): **SSH keys** con la clave `luis@pc-luis`.
+![SSH keys con la clave luis@pc-luis](../img/M01-01-ssh-key-luis.png)
 
 ### 18 — Comprueba que GitLab reconoce a Luis
 

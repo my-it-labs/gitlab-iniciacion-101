@@ -146,7 +146,7 @@ Los «2» son la carpeta `public/` y el archivo que contiene.
 
 **Resultado esperado:** la carpeta `public/` con `manual-completo.md`. El panel indica también cuándo caduca el artefacto, según el `expire_in: 1 week` del job.
 
-> 📷 **Captura pendiente** · `M05-02-browse-artifacts.png` — GitLab, sesión de Ana: **Job artifacts → Browse** con `public/manual-completo.md`.
+![Job artifacts → Browse con public/manual-completo.md](../img/M05-02-browse-artifacts.png)
 
 ### 9 — Descarga el artefacto
 

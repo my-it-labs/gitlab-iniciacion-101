@@ -214,7 +214,7 @@ El horario de referencia es de 9:00 a 17:00, con flexibilidad de una hora a la e
 
 VS Code colorea el bloque y pone encima los enlaces **Accept Current Change** (quedarse con `HEAD`), **Accept Incoming Change** (quedarse con `flexibilidad-salida`), **Accept Both Changes** y **Compare Changes**. Lo único que hacen es editar el texto entre las marcas: el archivo sigue siendo el de Ana y Git solo ve el resultado.
 
-> 📷 **Captura pendiente** · `M03-02-conflicto-vscode.png` — VS Code: el bloque en conflicto de `normas-de-trabajo.md` con los enlaces **Accept…**.
+![El bloque en conflicto de normas-de-trabajo.md con los enlaces Accept…](../img/M03-02-conflicto-vscode.png)
 
 ### 10 — Prueba la salida de emergencia
 
@@ -341,7 +341,7 @@ To gitlab:ana/manual-m03-conflicto.git
 
 En GitLab (sesión de Ana), `docs/normas-de-trabajo.md` (**Code → Repository**) muestra la frase acordada y **Code → Repository graph** dibuja la bifurcación y el merge.
 
-> 📷 **Captura pendiente** · `M03-02-normas-resueltas.png` — GitLab, sesión de Ana: `docs/normas-de-trabajo.md` con la frase acordada.
+![Docs/normas-de-trabajo.md con la frase acordada](../img/M03-02-normas-resueltas.png)
 
 ## Comprueba tu entendimiento
 

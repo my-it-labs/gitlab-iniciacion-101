@@ -73,7 +73,7 @@ En GitLab, la fila de `main` muestra **No one** en **Allowed to push and merge**
 
 **Resultado esperado:** la issue **#3** abierta, con la descripción y `luis` como asignado en la barra lateral derecha.
 
-> 📷 **Captura pendiente** · `M04-02-issue-3.png` — GitLab, sesión de Luis: la issue #3 asignada a `luis`.
+![La issue #3 asignada a luis](../img/M04-02-issue-3.png)
 
 > [!TIP]
 > Si la issue tiene otro número, usa ese número en lugar de `3` en el resto del lab.
@@ -197,7 +197,7 @@ branch '3-horario-verano' set up to track 'origin/3-horario-verano'.
 
 **Resultado esperado:** la MR **!1** abierta por `luis`, con origen `3-horario-verano`, destino `main`, `ana` como revisora y, en la descripción, `Closes #3` convertido en enlace a la issue.
 
-> 📷 **Captura pendiente** · `M04-02-mr.png` — GitLab, sesión de Luis: la MR !1 con `Closes #3` y `ana` como revisora.
+![La MR !1 con Closes #3 y ana como revisora](../img/M04-02-mr.png)
 
 ### 10 — Recorre la relación issue ↔ rama ↔ MR
 
@@ -210,7 +210,7 @@ branch '3-horario-verano' set up to track 'origin/3-horario-verano'.
 
 **Resultado esperado:** la issue #3 muestra la MR !1 como relacionada y, en la actividad, que la mencionó el commit o la MR. La MR muestra el commit `Añade el horario de verano (#3)`, de Luis. En **Code → Branches** aparece `3-horario-verano` junto a `main`.
 
-> 📷 **Captura pendiente** · `M04-02-issue-con-mr.png` — GitLab, sesión de Luis: la issue #3 con la MR !1 relacionada.
+![La issue #3 con la MR !1 relacionada](../img/M04-02-issue-con-mr.png)
 
 ## Comprueba tu entendimiento
 

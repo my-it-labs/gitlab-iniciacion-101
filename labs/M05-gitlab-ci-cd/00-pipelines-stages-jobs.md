@@ -63,7 +63,7 @@ Cualquier clave de primer nivel que no sea una palabra reservada (`stages`, `def
 
 4. En GitLab (🌐 sesión de Ana), en la barra lateral del proyecto, **Build → Pipelines** muestra la lista de ejecuciones. La más reciente aparece arriba, con su estado (**Running** mientras dura, **Passed** al acabar bien), el número de pipeline, la rama `main`, el commit que lo ha lanzado y una fila de iconos, uno por stage.
 
-   > 📷 **Captura pendiente** · `M05-00-pipelines.png` — GitLab, sesión de Ana: **Build → Pipelines** con el pipeline en **Passed**.
+   ![Build → Pipelines con el pipeline en Passed](../img/M05-00-pipelines.png)
 
 5. Al abrir el pipeline (clic en su estado o en su número), la pestaña de grafo dibuja una columna por stage: `validar` con el job `validar-paginas` y `construir` con `construir-manual`. La columna `construir` no empieza hasta que todos los jobs de `validar` han terminado bien. Si la validación fallara, `construir-manual` quedaría en **Skipped**: no tiene sentido generar un proyecto con páginas rotas.
 

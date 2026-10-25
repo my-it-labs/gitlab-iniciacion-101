@@ -26,7 +26,7 @@ El equipo ha decidido adelantar la reunión de los lunes y Ana se encarga de ref
 
 1. **La URL de clonado** (🌐 GitLab, sesión de Ana). En la página del proyecto, el botón **Code** despliega las direcciones del repositorio. En **Clone with SSH** está la que se usa en el curso: `git@gitlab:ana/manual-m02-demo.git`.
 
-   > 📷 **Captura pendiente** · `M02-00-clone-ssh.png` — GitLab, sesión de Ana: desplegable **Code** de `manual-m02-demo`.
+   ![Desplegable Code de manual-m02-demo](../img/M02-00-clone-ssh.png)
 
 2. **El clonado.** En el ordenador de Ana, desde `~/trabajo`:
 
@@ -115,7 +115,7 @@ El equipo ha decidido adelantar la reunión de los lunes y Ana se encarga de ref
 
 8. **El commit en GitLab** (🌐 GitLab, sesión de Ana). En la barra lateral, **Code** → **Commits** lista los commits de `main`. El primero es «Adelanta la reunión de equipo a las 9:30», de Ana, con el mismo identificador corto. Al abrirlo aparece el diff de `docs/normas-de-trabajo.md` con la línea de las 10:00 en rojo y la de las 9:30 en verde. En **Code** → **Repository**, la página `docs/normas-de-trabajo.md` ya dice 9:30.
 
-   > 📷 **Captura pendiente** · `M02-00-commit-en-gitlab.png` — GitLab, sesión de Ana: el commit «Adelanta la reunión de equipo a las 9:30» con su diff.
+   ![El commit «Adelanta la reunión de equipo a las 9:30» con su diff](../img/M02-00-commit-en-gitlab.png)
 
 > [!NOTE]
 > Los identificadores de commit (`90b49e9`…) son distintos en cada proyecto: dependen del contenido, el autor y la fecha.

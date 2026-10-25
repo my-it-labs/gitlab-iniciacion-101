@@ -17,7 +17,7 @@ El recorrido completo de un cambio:
 
 | Paso | Dónde | Resultado |
 |------|-------|-----------|
-| 1. Registrar la tarea | GitLab → Issues | Issue con número |
+| 1. Registrar la tarea | GitLab → Work items | Issue con número |
 | 2. Crear la rama | Git o la propia issue | Rama con nombre que remite a la issue |
 | 3. Hacer el cambio en commits | Editor + Git, en el ordenador de quien hace el cambio | Commits pequeños con mensajes claros |
 | 4. Publicar | `git push` | Rama en GitLab y pipeline lanzado |

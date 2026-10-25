@@ -46,18 +46,18 @@ En GitLab, la fila de `main` muestra **No one** en **Allowed to push and merge**
 
 ### 2 — Registra las issues pendientes del equipo
 
-**Acción** (🌐 GitLab, sesión de Ana): en **Plan → Issues → New issue**, crea dos issues, cada una solo con su **Title** y **Create issue**:
+**Acción** (🌐 GitLab, sesión de Ana): en **Plan → Work items → New item**, crea dos issues, cada una solo con su **Title** y **Create issue**:
 1. `La bienvenida no dice dónde pedir el portátil`
 2. `Falta el canal del chat del equipo en Herramientas`
 
 **Por qué:** un proyecto vivo siempre tiene trabajo pendiente registrado. Además, así la issue de Luis será la #3, como en el resto de esta página.
 
-**Resultado esperado:** en **Plan → Issues**, dos issues abiertas, **#1** y **#2**.
+**Resultado esperado:** en **Plan → Work items**, dos issues abiertas, **#1** y **#2**.
 
 ### 3 — Crea la issue de Luis
 
 **Acción** (🌐 GitLab, sesión de Luis):
-1. En la ventana privada, abre `http://localhost:8080/ana/manual-m04-issue` y ve a **Plan → Issues → New issue**.
+1. En la ventana privada, abre `http://localhost:8080/ana/manual-m04-issue` y ve a **Plan → Work items → New item**.
 2. **Title:** `Las normas no dicen el horario de verano`.
 3. **Description:**
 
@@ -66,7 +66,7 @@ En GitLab, la fila de `main` muestra **No one** en **Allowed to push and merge**
    (del 1 de julio al 31 de agosto, de 8:00 a 15:00).
    ```
 
-4. En **Assignee**, pulsa **Assign to me**.
+4. En **Assignee**, pulsa **assign yourself**.
 5. Pulsa **Create issue**.
 
 **Por qué:** la issue deja escrito qué falta y quién se encarga antes de tocar nada. Si mañana alguien pregunta por qué cambió el horario, la respuesta está aquí.
@@ -202,7 +202,7 @@ branch '3-horario-verano' set up to track 'origin/3-horario-verano'.
 ### 10 — Recorre la relación issue ↔ rama ↔ MR
 
 **Acción** (🌐 GitLab, sesión de Luis):
-1. Abre la issue #3 (**Plan → Issues**).
+1. Abre la issue #3 (**Plan → Work items**).
 2. Busca la MR relacionada en el cuerpo de la issue y en su actividad.
 3. Desde la MR, pulsa la pestaña **Commits** y luego **Code → Branches**.
 
@@ -215,7 +215,7 @@ branch '3-horario-verano' set up to track 'origin/3-horario-verano'.
 ## Comprueba tu entendimiento
 
 **La issue sigue abierta**
-🌐 Sesión de Ana: abre **Plan → Issues**.
+🌐 Sesión de Ana: abre **Plan → Work items**.
 → La #3 sigue **Open**: no se cierra hasta que se fusione la MR.
 
 **Qué cambia la MR**

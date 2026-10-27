@@ -55,7 +55,7 @@ construir-manual:
 Cualquier clave de primer nivel que no sea una palabra reservada (`stages`, `default`, `variables`…) es un job, y su nombre es el que aparecerá en GitLab. Los comandos de `script` son los mismos que se pueden ejecutar en el propio equipo: el pipeline no hace nada que no haga `sh scripts/validar.sh` en la terminal.
 
 > [!NOTE]
-> **Integración continua** es esto: cada cambio publicado se comprueba solo, con las mismas reglas para todo el equipo. La **entrega continua** sería el paso siguiente: dejar listo lo que se publica. Aquí llega hasta generar el documento completo (`public/manual-completo.md`); desplegarlo no entra en el curso.
+> **Integración continua** es esto: cada cambio publicado se comprueba solo, con las mismas reglas para todo el equipo. La **entrega continua** deja publicado lo que ha pasado las comprobaciones. Aquí el pipeline genera el documento completo (`public/manual-completo.md`). La imagen y la release de una versión están en [De la imagen a la release](../M07-publicar-version/00-imagen-y-release.md).
 
 ### Del push al pipeline
 

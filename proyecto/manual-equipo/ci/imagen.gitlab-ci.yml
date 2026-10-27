@@ -1,0 +1,30 @@
+stages:
+  - validar
+  - construir
+  - publicar
+
+validar-paginas:
+  stage: validar
+  image: alpine:3.20
+  script:
+    - sh scripts/validar.sh
+
+construir-manual:
+  stage: construir
+  image: alpine:3.20
+  script:
+    - sh scripts/construir.sh
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 week
+
+publicar-imagen:
+  stage: publicar
+  image:
+    name: docker:27-cli
+    entrypoint: [""]
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - docker build -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:latest"

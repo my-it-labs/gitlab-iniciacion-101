@@ -5,8 +5,11 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
   "hostRequirements": { "cpus": 4, "memory": "16gb" },
-  "forwardPorts": [8080],
-  "portsAttributes": { "8080": { "label": "GitLab", "onAutoForward": "notify" } },
+  "forwardPorts": [8080, 5050],
+  "portsAttributes": {
+    "8080": { "label": "GitLab", "onAutoForward": "notify" },
+    "5050": { "label": "Registro de imágenes", "onAutoForward": "silent" }
+  },
   "customizations": {
     "vscode": {
       "extensions": ["mhutchie.git-graph"],

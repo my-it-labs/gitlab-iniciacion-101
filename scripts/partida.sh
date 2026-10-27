@@ -5,6 +5,8 @@
 #
 # Uso (en el terminal del Codespace): scripts/partida.sh <usuario> <proyecto> [opciones]
 #   --con-ci            incluye .gitlab-ci.yml (validar + construir)
+#   --con-imagen        pipeline que publica la imagen Docker del proyecto
+#   --con-publicacion   lo anterior, más la release, y deja el tag v1.0.0
 #   --solo-remoto       no clona en el ordenador de <usuario>
 #   --miembro <otro>    añade a <otro> como Developer y clona también en su ordenador
 #   --preparar <otro>   solo deja listo el ordenador de <otro> (identidad y clave), sin darle acceso
@@ -18,12 +20,14 @@ RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
 ORIGEN="$RAIZ/proyecto/manual-equipo"
 ENV="$RAIZ/infra/.env"
 
-[ $# -ge 2 ] || { sed -n '2,14p' "$0" | sed 's/^# \{0,1\}//'; exit 2; }
+[ $# -ge 2 ] || { sed -n '2,16p' "$0" | sed 's/^# \{0,1\}//'; exit 2; }
 USUARIO="$1"; PROYECTO="$2"; shift 2
-CON_CI=0; CLONAR=1; MIEMBRO=""; PREPARAR=""
+CON_CI=0; CON_IMAGEN=0; CON_PUBLICACION=0; CLONAR=1; MIEMBRO=""; PREPARAR=""
 while [ $# -gt 0 ]; do
   case "$1" in
     --con-ci) CON_CI=1 ;;
+    --con-imagen) CON_IMAGEN=1; CON_CI=1 ;;
+    --con-publicacion) CON_PUBLICACION=1; CON_IMAGEN=1; CON_CI=1 ;;
     --solo-remoto) CLONAR=0 ;;
     --miembro) MIEMBRO="${2:?Falta el usuario de --miembro}"; shift ;;
     --preparar) PREPARAR="${2:?Falta el usuario de --preparar}"; shift ;;
@@ -114,7 +118,15 @@ trap 'rm -rf "$TMP"' EXIT
   cp "$ORIGEN/docs/normas-de-trabajo.md" docs/
   cp "$ORIGEN/scripts/"*.sh scripts/
   git add docs scripts && git commit -q -m "Añade normas de trabajo y scripts de validación"
-  if [ "$CON_CI" = 1 ]; then
+  if [ "$CON_PUBLICACION" = 1 ]; then
+    cp "$ORIGEN/ci/publicacion.gitlab-ci.yml" .gitlab-ci.yml
+    cp "$ORIGEN/Dockerfile" .
+    git add .gitlab-ci.yml Dockerfile && git commit -q -m "Publica la imagen y crea la release"
+  elif [ "$CON_IMAGEN" = 1 ]; then
+    cp "$ORIGEN/ci/imagen.gitlab-ci.yml" .gitlab-ci.yml
+    cp "$ORIGEN/Dockerfile" .
+    git add .gitlab-ci.yml Dockerfile && git commit -q -m "Publica la imagen del proyecto"
+  elif [ "$CON_CI" = 1 ]; then
     cp "$ORIGEN/.gitlab-ci.yml" .
     git add .gitlab-ci.yml && git commit -q -m "Añade pipeline de validación"
   fi
@@ -122,7 +134,16 @@ trap 'rm -rf "$TMP"' EXIT
   git push -q "$ESQUEMA://root:$GITLAB_TOKEN@$HOST/$USUARIO/$PROYECTO.git" main 2>/dev/null
 )
 # El push lo hace root, que no lanza pipeline: se lanza el primero en nombre de <usuario>.
-if [ "$CON_CI" = 1 ]; then
+if [ "$CON_IMAGEN" = 1 ]; then
+  api -X PUT "$GITLAB_URL/api/v4/projects/$USUARIO%2F$PROYECTO" \
+    -d container_registry_access_level=enabled >/dev/null
+fi
+if [ "$CON_PUBLICACION" = 1 ]; then
+  api -X POST -H "Sudo: $USUARIO" "$GITLAB_URL/api/v4/projects/$USUARIO%2F$PROYECTO/repository/tags" \
+    --data-urlencode "tag_name=v1.0.0" --data-urlencode "ref=main" \
+    --data-urlencode "message=Version 1.0.0 del proyecto" >/dev/null
+  echo "Etiqueta v1.0.0: el pipeline de la etiqueta publica la imagen y crea la release"
+elif [ "$CON_CI" = 1 ]; then
   api -X POST -H "Sudo: $USUARIO" "$GITLAB_URL/api/v4/projects/$USUARIO%2F$PROYECTO/pipeline?ref=main" >/dev/null
 fi
 echo "Proyecto: $GITLAB_URL/$USUARIO/$PROYECTO"

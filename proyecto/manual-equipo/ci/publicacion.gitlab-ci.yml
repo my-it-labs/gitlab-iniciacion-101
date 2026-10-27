@@ -1,0 +1,51 @@
+stages:
+  - validar
+  - construir
+  - publicar
+  - version
+
+validar-paginas:
+  stage: validar
+  image: alpine:3.20
+  script:
+    - sh scripts/validar.sh
+
+construir-manual:
+  stage: construir
+  image: alpine:3.20
+  script:
+    - sh scripts/construir.sh
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 week
+
+publicar-imagen:
+  stage: publicar
+  image:
+    name: docker:27-cli
+    entrypoint: [""]
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - docker build -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        docker tag "$CI_REGISTRY_IMAGE:latest" "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
+        docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
+      fi
+
+publicar-release:
+  stage: version
+  image: alpine:3.20
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - apk add --no-cache curl
+    - |
+      curl --fail-with-body --silent --show-error \
+        --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+        --data-urlencode "name=manual-equipo ${CI_COMMIT_TAG}" \
+        --data-urlencode "tag_name=${CI_COMMIT_TAG}" \
+        --data-urlencode "description=Imagen del proyecto ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}" \
+        "http://gitlab:8080/api/v4/projects/${CI_PROJECT_ID}/releases"

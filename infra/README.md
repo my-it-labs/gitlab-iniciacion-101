@@ -10,6 +10,7 @@ flowchart LR
     nav["🌐 Navegador<br/>localhost:8080"]
     subgraph red["red gitlab-curso"]
       gl["GitLab<br/>gitlab"]
+      reg["Registro<br/>gitlab:5050"]
       rn["Runner"]
       pa["💻 Ordenador de Ana<br/>pc-ana"]
       pl["💻 Ordenador de Luis<br/>pc-luis"]
@@ -21,6 +22,7 @@ flowchart LR
   pa -- "git por SSH" --> gl
   pl -- "git por SSH" --> gl
   rn -- "pipelines" --> gl
+  rn -- "docker push" --> reg
 ```
 
 | Quién | Usuario de GitLab | Ordenador | Su carpeta en VS Code | Correo |
@@ -93,12 +95,28 @@ El script crea las carpetas `home-ana/` y `home-luis/`, arranca GitLab, el runne
 
 ```text
 GitLab listo: http://localhost:8080  ·  usuarios: ana luis  ·  contraseña: Formacion-2026!
+Registro de imágenes: gitlab:5050
 Ordenadores: docker exec -it pc-ana bash  ·  docker exec -it pc-luis bash
 ```
 
 GitLab se abre en `http://localhost:8080`. En un Codespace, abre la pestaña **Ports** de VS Code y pulsa el globo de la fila **8080**.
 
-Si el puerto 8080 está ocupado, usa otro: `GITLAB_PORT=8929 infra/bootstrap.sh`.
+Si el puerto 8080 está ocupado, usa otro: `GITLAB_PORT=8929 infra/bootstrap.sh`. El registro sigue en el puerto 5050.
+
+## Registro de imágenes
+
+GitLab guarda imágenes Docker del proyecto. Desde el Codespace y desde los jobs del pipeline el registro se llama `gitlab:5050`. El arranque deja ese nombre apuntando a esta máquina, acepta el registro por HTTP y permite que el runner ejecute `docker build` y `docker push`. El navegador sigue en `http://localhost:8080`.
+
+```bash
+# 🖥️ Terminal del Codespace
+curl -s -o /dev/null -w '%{http_code}\n' http://gitlab:5050/v2/
+```
+
+```text
+401
+```
+
+`401` es la respuesta de un registro en marcha: pide identificarse. Las prácticas de [Publicar una versión](../labs/M07-publicar-version/README.md) publican ahí la imagen del proyecto.
 
 ## El punto de partida de cada página
 

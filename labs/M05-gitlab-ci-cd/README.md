@@ -14,7 +14,7 @@ Una página sin título o un enlace roto no deberían llegar al proyecto. Aquí 
 
 ## Teoría
 
-**Integración continua (CI)**: cada cambio publicado se comprueba de forma automática. **Entrega continua (CD)**: lo que pasa las comprobaciones queda listo para publicarse. En este curso llegas a la CI y a generar el resultado. El despliegue no entra.
+**Integración continua (CI)**: cada cambio publicado se comprueba de forma automática. **Entrega continua (CD)**: lo que pasa las comprobaciones queda listo para publicarse. En este módulo el resultado es el documento generado. Publicarlo como imagen y como release se hace en [Publicar una versión](../M07-publicar-version/README.md).
 
 | Pieza | Qué es |
 |-------|--------|

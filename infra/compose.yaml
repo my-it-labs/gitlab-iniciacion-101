@@ -1,5 +1,6 @@
 # GitLab CE + runner Docker + los ordenadores del equipo, todos en la red gitlab-curso.
 # Navegador: http://localhost:$GITLAB_PORT (8080) · dentro de la red: http://gitlab:$GITLAB_PORT
+# Registro de imágenes: gitlab:5050 (HTTP; el navegador sigue en el puerto de GitLab)
 # Git por SSH desde los ordenadores: git@gitlab:<usuario>/<proyecto>.git
 name: gitlab-curso
 
@@ -10,6 +11,7 @@ services:
     restart: unless-stopped
     ports:
       - "${GITLAB_PORT:-8080}:${GITLAB_PORT:-8080}"
+      - "5050:5050"
     environment:
       GITLAB_ROOT_PASSWORD: ${GITLAB_ROOT_PASSWORD:-Formacion-2026!}
       GITLAB_OMNIBUS_CONFIG: |
@@ -22,6 +24,8 @@ services:
         prometheus_monitoring['enable'] = false
         gitlab_rails['usage_ping_enabled'] = false
         gitlab_rails['gitlab_signup_enabled'] = false
+        registry_external_url 'http://gitlab:5050'
+        registry['token_realm'] = 'http://gitlab:${GITLAB_PORT:-8080}'
     volumes:
       - gitlab-config:/etc/gitlab
       - gitlab-logs:/var/log/gitlab

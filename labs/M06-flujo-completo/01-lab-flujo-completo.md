@@ -1,6 +1,6 @@
 # Lab — Flujo completo
 
-[← Página anterior](00-flujo-completo.md)
+[← Página anterior](00-flujo-completo.md) · [Siguiente página →](../M07-publicar-version/README.md)
 
 En las normas de trabajo del proyecto, la sección «Vacaciones» se queda en una frase, y cada semana alguien pregunta lo mismo. Te toca resolverlo de principio a fin, como Ana: en su ordenador y con su sesión de GitLab. Registras la tarea, la haces en su rama, la propones por merge request con el pipeline en verde y la integras en `main`, que está protegida. Esta vez los pasos dicen qué tiene que quedar hecho y lo que debes ver, no cada clic. Si te atascas, cada paso tiene una pista plegada.
 

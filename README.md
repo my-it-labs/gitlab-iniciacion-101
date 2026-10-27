@@ -4,11 +4,11 @@
 
 ## Objetivo general
 
-Al finalizar el curso, el alumno registra y comparte su trabajo con Git y GitLab: guarda cada cambio con su historial, lo desarrolla en una rama, lo integra mediante una merge request revisada y lo valida con un pipeline de GitLab CI/CD.
+Al finalizar el curso, el alumno registra y comparte su trabajo con Git y GitLab: guarda cada cambio con su historial, lo desarrolla en una rama, lo integra mediante una merge request revisada, lo valida con un pipeline de GitLab CI/CD y publica una versión del proyecto como imagen Docker y como release.
 
 ## Enfoque
 
-Todo el curso trabaja sobre un único proyecto, `manual-equipo`: la documentación interna de un equipo, su manual, con páginas en Markdown sobre la bienvenida a quien se incorpora, las herramientas y las normas de trabajo, y dos scripts que comprueban que las páginas están bien. En las prácticas se le llama simplemente **el proyecto**. Al ser texto y no código, cada diff y cada conflicto se leen a simple vista, y la atención queda en Git y GitLab, no en un lenguaje de programación. El recorrido va del primer commit en local a la sincronización con GitLab, a las ramas y sus conflictos, al trabajo entre dos personas del equipo, Ana y Luis, con issues y merge requests sobre una rama protegida y al pipeline que comprueba cada push. Cada tema se cierra con el cambio publicado en GitLab, donde se puede ver y explicar qué ha ocurrido.
+Todo el curso trabaja sobre un único proyecto, `manual-equipo`: la documentación interna de un equipo, su manual, con páginas en Markdown sobre la bienvenida a quien se incorpora, las herramientas y las normas de trabajo, y dos scripts que comprueban que las páginas están bien. En las prácticas se le llama simplemente **el proyecto**. Al ser texto y no código, cada diff y cada conflicto se leen a simple vista, y la atención queda en Git y GitLab, no en un lenguaje de programación. El recorrido va del primer commit en local a la sincronización con GitLab, a las ramas y sus conflictos, al trabajo entre dos personas del equipo, Ana y Luis, con issues y merge requests sobre una rama protegida y al pipeline que comprueba cada push. El ejercicio integrador recorre ese flujo de una vez. El último módulo publica una versión: el pipeline construye una imagen Docker con el documento generado y, al etiquetar un commit, deja una release. Cada tema se cierra con el cambio publicado en GitLab, donde se puede ver y explicar qué ha ocurrido.
 
 ## Dirigido a
 
@@ -16,7 +16,7 @@ Personas que empiezan con el control de versiones o que han usado Git sin entend
 
 ## Conocimientos previos
 
-Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una carpeta y ejecutar un comando). No hace falta saber programar ni haber usado Git. Las ramas, las merge requests y CI/CD se estudian en el curso. Todo el entorno (GitLab, su runner y los ordenadores del equipo) se levanta en tu Codespace, por lo que no hace falta instalar nada ni crear cuentas en otros servicios.
+Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una carpeta y ejecutar un comando). No hace falta saber programar ni haber usado Git ni Docker. Las ramas, las merge requests, CI/CD, la imagen y la release se estudian en el curso. Todo el entorno (GitLab, su registro de imágenes, su runner y los ordenadores del equipo) se levanta en tu Codespace, por lo que no hace falta instalar nada ni crear cuentas en otros servicios.
 
 ## Objetivos específicos
 
@@ -26,6 +26,7 @@ Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una 
 - Colaborar en un proyecto compartido: roles, issues, merge requests revisadas y rama principal protegida.
 - Escribir un `.gitlab-ci.yml` básico, interpretar su pipeline, leer el log de un job que falla y descargar su artefacto.
 - Completar una tarea desde la issue hasta la fusión con un historial claro.
+- Publicar el documento generado como imagen Docker en el registro del proyecto y crear una release al etiquetar una versión.
 
 ## Temario
 
@@ -70,6 +71,11 @@ Manejo básico del ordenador, de un editor de texto y de la terminal (abrir una 
   - [Organización básica del repositorio y documentación](labs/M06-flujo-completo/00-flujo-completo.md)
   - [Recomendaciones para colaborar y mantener un historial claro](labs/M06-flujo-completo/00-flujo-completo.md)
   - [Errores habituales y cómo evitarlos](labs/M06-flujo-completo/00-flujo-completo.md)
+- **[M07 — Publicar una versión](labs/M07-publicar-version/README.md)**
+  - [Imagen Docker del documento generado](labs/M07-publicar-version/01-lab-imagen.md)
+  - [Registro de contenedores de GitLab](labs/M07-publicar-version/00-imagen-y-release.md)
+  - [Publicación de la imagen desde el pipeline](labs/M07-publicar-version/01-lab-imagen.md)
+  - [Tag de versión y release creada por CI/CD](labs/M07-publicar-version/02-lab-release.md)
 <!-- /gen:temario -->
 
 ## Antes de empezar

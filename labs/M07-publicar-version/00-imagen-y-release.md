@@ -53,7 +53,7 @@ publicar-imagen:
 
 3. En GitLab (🌐 sesión de Ana, `ana` / `Formacion-2026!`), **Build → Pipelines** muestra el pipeline del tag `v1.0.0`. El grafo tiene cuatro columnas: `validar`, `construir`, `publicar` y `version`. Mientras dura, el estado es **Running**. Al acabar bien, **Passed**.
 
-> 📷 **Captura pendiente** · `M07-00-pipeline-tag.png` — pipeline del tag v1.0.0 con las cuatro stages en Passed
+   ![Pipeline del tag v1.0.0 con las cuatro stages en Passed](../img/M07-00-pipeline-tag.png)
 
 4. El log de `publicar-imagen` termina con las dos subidas. GitLab pliega el `if` en una sola línea; el tag `v1.0.0` se ve en la línea del digest. El digest cambia en cada construcción. Este es el de `ana/manual-m07-demo`:
 
@@ -65,9 +65,9 @@ $ if [ -n "$CI_COMMIT_TAG" ]; then # collapsed multi-line command
 v1.0.0: digest: sha256:b0d84aa8b11e26b49f9771026c675b6145b298e9433d07e2259fad7c6a77c48f size: 735
 ```
 
-5. **Deploy → Container Registry** lista el repositorio de la imagen y, dentro, los tags `latest` y `v1.0.0`.
+5. **Deploy → Container registry** lista el repositorio de la imagen y, dentro, los tags `latest` y `v1.0.0`.
 
-> 📷 **Captura pendiente** · `M07-00-registry.png` — Container Registry con los tags latest y v1.0.0
+   ![Container registry con los tags latest y v1.0.0](../img/M07-00-registry.png)
 
 6. Desde el terminal del Codespace se entra al registro con la cuenta de Ana y se ejecuta la imagen del tag. Imprime el documento:
 
@@ -104,7 +104,7 @@ El tag ya existe: el pipeline ha arrancado porque alguien lo ha publicado. El jo
 
 8. **Deploy → Releases** muestra una release: título `manual-equipo v1.0.0`, tag `v1.0.0` y la descripción `Imagen del proyecto gitlab:5050/ana/manual-m07-demo:v1.0.0`.
 
-> 📷 **Captura pendiente** · `M07-00-release.png` — Releases con manual-equipo v1.0.0 y la imagen en la descripción
+   ![Releases con manual-equipo v1.0.0 y la imagen en la descripción](../img/M07-00-release.png)
 
 ## Qué queda visto
 

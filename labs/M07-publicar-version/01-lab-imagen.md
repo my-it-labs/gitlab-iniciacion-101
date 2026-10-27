@@ -177,7 +177,7 @@ git push
 
 **Resultado esperado:** el grafo muestra `validar`, `construir` y `publicar`, en ese orden. Los tres jobs terminan en **Passed**.
 
-> 📷 **Captura pendiente** · `M07-01-pipeline.png` — pipeline con la stage publicar en Passed
+![Pipeline de main con la stage publicar en Passed](../img/M07-01-pipeline.png)
 
 ### 9 — Busca la subida en el log
 
@@ -189,13 +189,13 @@ git push
 
 ### 10 — Mira la imagen en el registro
 
-**Acción** (🌐 GitLab, sesión de Ana): en la barra lateral del proyecto, abre **Deploy → Container Registry**. Entra en el repositorio de la imagen.
+**Acción** (🌐 GitLab, sesión de Ana): en la barra lateral del proyecto, abre **Deploy → Container registry**. Entra en el repositorio de la imagen.
 
 **Por qué:** es el sitio donde el equipo encuentra lo publicado, sin leer el log.
 
 **Resultado esperado:** un tag, `latest`, con el nombre de la imagen `gitlab:5050/ana/manual-m07-imagen`.
 
-> 📷 **Captura pendiente** · `M07-01-registry.png` — Container Registry con el tag latest
+![Container registry con el tag latest](../img/M07-01-registry.png)
 
 ### 11 — Ejecuta la imagen que ha publicado el pipeline
 
@@ -222,7 +222,7 @@ En el ordenador de Ana, `git status` dentro de `~/trabajo/manual-m07-imagen`.
 → `nothing to commit, working tree clean`. No hay `public/` ni una imagen dentro del commit: en el commit están el `Dockerfile` y el `.gitlab-ci.yml`.
 
 **`latest` es de esta ejecución**
-En **Deploy → Container Registry**, abre el tag `latest` y mira la fecha.
+En **Deploy → Container registry**, abre el tag `latest` y mira la fecha.
 → Es la del pipeline del commit «Publica la imagen del proyecto», posterior a la del pipeline inicial, que no tenía job de imagen.
 
 ## Reto
@@ -242,7 +242,7 @@ En el `script` del job, añade una etiqueta y su `docker push` después del de `
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
 ```
 
-Commit, push y, en **Deploy → Container Registry**, aparecen `latest` y un tag de ocho caracteres, el mismo que muestra el pipeline junto al commit.
+Commit, push y, en **Deploy → Container registry**, aparecen `latest` y un tag de ocho caracteres, el mismo que muestra el pipeline junto al commit.
 
 </details>
 

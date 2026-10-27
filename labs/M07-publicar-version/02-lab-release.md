@@ -152,7 +152,7 @@ git push origin v1.0.0
 
 **Resultado esperado:** cuatro columnas: `validar`, `construir`, `publicar` y `version`. `publicar-imagen` y `publicar-release` terminan en **Passed**.
 
-> 📷 **Captura pendiente** · `M07-02-pipeline-tag.png` — pipeline del tag v1.0.0 con la stage version en Passed
+![Pipeline del tag v1.0.0 con la stage version en Passed](../img/M07-02-pipeline-tag.png)
 
 ### 7 — Lee la ficha en el log
 
@@ -170,7 +170,7 @@ git push origin v1.0.0
 
 **Resultado esperado:** una release con título `manual-equipo v1.0.0`, tag `v1.0.0` y la descripción `Imagen del proyecto gitlab:5050/ana/manual-m07-release:v1.0.0`.
 
-> 📷 **Captura pendiente** · `M07-02-release.png` — Deploy → Releases con manual-equipo v1.0.0
+![Deploy → Releases con manual-equipo v1.0.0](../img/M07-02-release.png)
 
 ### 9 — Ejecuta la imagen de esa versión
 
@@ -190,9 +190,9 @@ docker run --rm gitlab:5050/ana/manual-m07-release:v1.0.0 | head -n 1
 # Manual del equipo
 ```
 
-En **Deploy → Container Registry** están los dos tags, `latest` y `v1.0.0`.
+En **Deploy → Container registry** están los dos tags, `latest` y `v1.0.0`.
 
-> 📷 **Captura pendiente** · `M07-02-registry.png` — tags latest y v1.0.0 en Container Registry
+![Container registry con los tags latest y v1.0.0](../img/M07-02-registry.png)
 
 ## Comprueba tu entendimiento
 
